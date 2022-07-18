@@ -635,16 +635,7 @@
         }
         wowSlickInit($selector, sliderSettings);
     }
-    var $scprogressBar = $('.slider-controlprogress');
-    var $progressBarLabel = $( '.slider__label_Progress' );
-    $('.team-member-carousel').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-        var calc = ( (nextSlide) / (slick.slideCount-1) ) * 100;
-        $scprogressBar
-            .css('background-size', calc + '% 100%')
-            .attr('aria-valuenow', calc );
 
-        $progressBarLabel.text( calc + '% completed' );
-    });
 
     //slick init function
     function wowSlickInit($selector, settings, animateOut = false) {
@@ -670,40 +661,10 @@
         /*---------------------------------
         * Magnific Popup
         * --------------------------------*/
-
-        $('.video').lightcase();
-        $('.img-popup').lightcase();
-        /*---------------------------------
-        * Magnific Popup
-        * --------------------------------*/
         $('.video-play-btn,.video-play-btn-02,.play-video-btn,.button-video').magnificPopup({
             type: 'video',
             removalDelay: 400,
             preloader: false,
-        });
-        // Nice select
-        $("select").niceSelect(),
-            //Call Widget
-            $('.call-widget-btn').on('click', function () {
-                $('.call-widget-wrapper').toggleClass('open');
-            });
-        // book + - start here
-        $(function () {
-            $(".qtybutton").on("click", function () {
-                var $button = $(this);
-                var oldValue = $button.parent().find("input").val();
-                if ($button.text() === "+") {
-                    var newVal = parseFloat(oldValue) + 1;
-                } else {
-                    // Don't allow decrementing below zero
-                    if (oldValue > 1) {
-                        var newVal = parseFloat(oldValue) - 1;
-                    } else {
-                        newVal = 1;
-                    }
-                }
-                $button.parent().find("input").val(newVal);
-            });
         });
 
     });

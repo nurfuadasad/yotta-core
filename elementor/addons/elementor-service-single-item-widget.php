@@ -94,18 +94,6 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
             ]
         );
         $this->add_control(
-            'service_system',
-            [
-                'label' => esc_html__('Blog Style System', 'yotta-core'),
-                'type' => Controls_Manager::SELECT,
-                'default' => 'for-slider',
-                'options' => [
-                    'for-grid' => esc_html__('Grid System', 'yotta-core'),
-                    'for-slider' => esc_html__('Slider System', 'yotta-core'),
-                ],
-            ]
-        );
-        $this->add_control(
             'column',
             [
                 'label' => esc_html__('Column', 'yotta-core'),
@@ -117,63 +105,45 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
                     '6' => esc_html__('02 Column', 'yotta-core'),
                     '12' => esc_html__('01 Column', 'yotta-core'),
                 ),
-                'condition' => ['service_system' => 'for-grid'],
                 'description' => esc_html__('select grid column', 'yotta-core'),
                 'default' => '4'
             ]
         );
-        $repeater = new Repeater();
-        $repeater->add_control(
-            'title',
-            [
-                'label' => esc_html__('Title', 'yotta-core'),
-                'type' => Controls_Manager::TEXT,
-                'description' => esc_html__('enter title.', 'yotta-core'),
-                'default' => esc_html__('Luxury & Comfort', 'yotta-core'),
-            ]
-        );
-        $repeater->add_control('image',
-            [
-                'label' => esc_html__('Image', 'yotta-core'),
-                'type' => Controls_Manager::MEDIA,
-                'description' => esc_html__('enter title.', 'yotta-core'),
-                'default' => array(
-                    'url' => Utils::get_placeholder_image_src()
-                )
-            ]);
-        $repeater->add_control(
-            'text_align',
-            [
-                'label' => esc_html__('Alignment', 'yotta-core'),
-                'type' => Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'yotta-core'),
-                        'icon' => 'fa fa-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'yotta-core'),
-                        'icon' => 'fa fa-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'yotta-core'),
-                        'icon' => 'fa fa-align-right',
-                    ],
-                ],
-                'default' => 'center',
-                'toggle' => true,
-            ]
-        );
-        $this->add_control('service_items', [
-            'label' => esc_html__('Testimonial Item', 'yotta-core'),
-            'type' => Controls_Manager::REPEATER,
-            'fields' => $repeater->get_controls(),
-            'default' => [
-                [
-                    'title' => esc_html__('PRESCHOOL MARTIAL ARTS', 'yotta-core'),
-                       ]
-            ],
-
+        $this->add_control('total', [
+            'label' => esc_html__('Total Posts', 'yotta-core'),
+            'type' => Controls_Manager::TEXT,
+            'default' => '-1',
+            'description' => esc_html__('enter how many course you want in masonry , enter -1 for unlimited course.')
+        ]);
+        $this->add_control('category', [
+            'label' => esc_html__('Category', 'yotta-core'),
+            'type' => Controls_Manager::SELECT2,
+            'multiple' => true,
+            'options' => yotta()->get_terms_names('service-cat', 'id'),
+            'description' => esc_html__('select category as you want, leave it blank for all category', 'yotta-core'),
+        ]);
+        $this->add_control('order', [
+            'label' => esc_html__('Order', 'yotta-core'),
+            'type' => Controls_Manager::SELECT,
+            'options' => array(
+                'ASC' => esc_html__('Ascending', 'yotta-core'),
+                'DESC' => esc_html__('Descending', 'yotta-core'),
+            ),
+            'default' => 'ASC',
+            'description' => esc_html__('select order', 'yotta-core')
+        ]);
+        $this->add_control('orderby', [
+            'label' => esc_html__('OrderBy', 'yotta-core'),
+            'type' => Controls_Manager::SELECT,
+            'options' => array(
+                'ID' => esc_html__('ID', 'yotta-core'),
+                'title' => esc_html__('Title', 'yotta-core'),
+                'date' => esc_html__('Date', 'yotta-core'),
+                'rand' => esc_html__('Random', 'yotta-core'),
+                'comment_count' => esc_html__('Most Comments', 'yotta-core'),
+            ),
+            'default' => 'ID',
+            'description' => esc_html__('select order', 'yotta-core')
         ]);
         $this->end_controls_section();
 
@@ -358,93 +328,75 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        $all_service_items = $settings['service_items'];
-        $rand_numb = rand(333, 999999999);
 
-        //slider settings
+        //query settings
+        $total_posts = $settings['total'];
+        $category = $settings['category'];
+        $order = $settings['order'];
+        $orderby = $settings['orderby'];
 
-        $slider_settings = [
-            "loop" => esc_attr($settings['loop']),
-            "margin" => esc_attr($settings['margin']['size'] ?? 0),
-            "items" => esc_attr($settings['items'] ?? 3),
-            "center" => esc_attr($settings['center']),
-            "autoplay" => esc_attr($settings['autoplay']),
-            "autoplaytimeout" => esc_attr($settings['autoplaytimeout']['size'] ?? 0),
-            "nav" => esc_attr($settings['nav']),
-            "dot" => esc_attr($settings['dots']),
-            "navleft" => yotta_core()->render_elementor_icons($settings['nav_left_arrow']),
-            "navright" => yotta_core()->render_elementor_icons($settings['nav_right_arrow'])
-
-        ]
+        //setup query
+        $args = [
+            'post_type' => 'service',
+            'post_per_page' => $total_posts,
+            'order' => $order,
+            'orderby' => $orderby,
+            'post_status' => 'publish'
+        ];
+        if (!empty($category)) {
+            $args['tex_query'] = [
+                [
+                    'taxonomy' => 'service-cat',
+                    'field' => 'term_id',
+                    'terms' => $category
+                ]
+            ];
+        }
+        $post_data = new \WP_Query($args);
         ?>
-        <?php if ($settings['service_system'] === 'for-slider') : ?>
-        <div class="testimonial-carousel-wrapper yotta-rtl-slider">
-            <div class="service-carousel"
-                 id="service-one-carousel-<?php echo esc_attr($rand_numb); ?>"
-                 data-settings='<?php echo json_encode($slider_settings) ?>'
-            >
-                <?php
-                foreach ($all_service_items as $item):
-                    $image_id = $item['image']['id'] ?? '';
-                    $image_url = !empty($image_id) ? wp_get_attachment_image_src($image_id, 'full', false)[0] : '';
-                    $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
-
-                    ?>
-                    <div class="tm-outer-wrap">
-                        <div class="service-item">
-                            <div class="service-thumb">
-                                <img src="<?php echo esc_url($image_url); ?>"
-                                     alt="<?php echo esc_attr($image_alt); ?>">
-                                <div class="service-overlay">
-                                    <div class="service-overlay-content">
-                                        <?php
-                                        if (!empty($item['title'])) {
-                                            printf('<a %1$s ><h3 class="title">%2$s</h3></a>', $this->get_render_attribute_string('link_wrapper'), esc_html($item['title']));
-                                        } ?>
-                                       </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="slick-carousel-controls">
-                <?php if (!empty($settings['nav'])) : ?>
-                    <div class="slider-nav"></div>
-                <?php endif; ?>
-                <div class="slider-dots style-01"></div>
-            </div>
-        </div>
-    <?php endif; ?>
-        <?php if ($settings['service_system'] === 'for-grid') : ?>
         <div class="service-wrapper">
             <div class="row">
                 <?php
-                foreach ($all_service_items as $item):
-                    $image_id = $item['imageimage']['id'] ?? '';
-                    $image_url = !empty($image_id) ? wp_get_attachment_image_src($image_id, 'full', false)[0] : '';
+                while ($post_data->have_posts()): $post_data->the_post();
+                    $post_id = get_the_ID();
+                    $image_id = get_post_thumbnail_id($post_id) ? get_post_thumbnail_id($post_id) : false;
+                    $image_url_val = $image_id ? wp_get_attachment_image_src($image_id, 'full', false) : '';
+                    $image_url = is_array($image_url_val) && !empty($image_url_val) ? $image_url_val[0] : '';
                     $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+                    $service_single_meta_data = get_post_meta(get_the_ID(), 'yotta_service_options',true);
+                    $service_single_repeater = isset($service_single_meta_data['service_repeater']) && !empty($service_single_meta_data['service_repeater']) ? $service_single_meta_data['service_repeater'] : '';
                     ?>
                     <div class="col-lg-<?php echo esc_attr($settings['column']); ?> col-md-6">
-                        <div class="service-item">
-                            <div class="service-thumb">
+                        <div class="hosting-item">
+                            <div class="hosting-icon">
                                 <img src="<?php echo esc_url($image_url); ?>"
                                      alt="<?php echo esc_attr($image_alt); ?>">
-                                <div class="service-overlay">
-                                    <div class="service-overlay-content">
-                                        <?php
-                                        if (!empty($item['title'])) {
-                                            printf('<a %1$s ><h3 class="title">%2$s</h3></a>', $this->get_render_attribute_string('link_wrapper'), esc_html($item['title']));
-                                        } ?>
-                                    </div>
+                            </div>
+                            <div class="hosting-content">
+                                <?php
+                                if (!empty($item['title'])) {
+                                    printf('<a %1$s ><h5 class="title">%2$s</h5></a>', the_permalink(), esc_html(get_the_title($post_id)));
+                                } ?>
+                                <ul class="hosting-list">
+                                    <?php
+                                    if (!empty($service_single_repeater)){
+                                        foreach ($service_single_repeater as $repeater){
+                                            printf('<li>%1$s</li>',$repeater['title']);
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                                <div class="hosting-btn">
+                                    <a href="<?php the_permalink() ?>"><?php esc_html_e('Get Started', 'yotta-core') ?></a>
                                 </div>
                             </div>
+                            <div class="bottom-shape"></div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php endwhile; ?>
             </div>
         </div>
-    <?php endif;
+        <?php
     }
 }
 

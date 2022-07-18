@@ -92,23 +92,47 @@ class Yotta_Live_Video_Popup_Widget extends Widget_Base
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
-        $this->add_control('flags-image',
-            [
-                'label' => esc_html__('Flag Image', 'yotta-core'),
-                'type' => Controls_Manager::MEDIA,
-                'description' => esc_html__('Choose Image.', 'yotta-core'),
-                'default' => array(
-                    'url' => Utils::get_placeholder_image_src()
-                )
-            ]);
+        $this->add_control(
 
-        $this->add_control('flags-name',
+            'link',
             [
-                'label' => esc_html__('Name', 'yotta-core'),
-                'type' => Controls_Manager::TEXT,
-                'description' => esc_html__('Enter Location Name', 'yotta-core'),
-                'block' => true,
-                'default' => esc_html__('Canada', 'yotta-core')
+                'label' => esc_html__('Link', 'yotta-core'),
+                'type' => Controls_Manager::URL,
+                'description' => esc_html__('enter url.', 'yotta-core'),
+                'default' => [
+                    'url' => ''
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'icon',
+            [
+                'label' => esc_html__('Icon', 'yotta-core'),
+                'type' => Controls_Manager::ICONS,
+                'description' => esc_html__('select Icon.', 'yotta-core'),
+                'default' => [
+                    'value' => 'fas fa-play',
+                    'library' => 'solid',
+                ]
+            ]
+        );
+        $this->add_control(
+            'title',
+            [
+                'label' => esc_html__('Title', 'yotta-core'),
+                'type' => Controls_Manager::TEXTAREA,
+                'label_block' => true,
+                'description' => esc_html__('enter title.', 'yotta-core'),
+                'default' => esc_html__('Go Live in a Minutes', 'yotta-core')
+            ]
+        );
+        $this->add_control('description',
+            [
+                'label' => esc_html__('Description', 'yotta-core'),
+                'type' => Controls_Manager::TEXTAREA,
+                'description' => esc_html__('enter description', 'yotta-core'),
+                'default' => esc_html__('We make it simple to launch in the cloud and hosting our best pricing and team accounts.', 'yotta-core')
             ]);
         $this->end_controls_section();
 
@@ -152,11 +176,8 @@ class Yotta_Live_Video_Popup_Widget extends Widget_Base
     protected function render()
     {
 
-        // $settings = $this->get_settings_for_display();
+         $settings = $this->get_settings_for_display();
 
-        // $img_id = $settings['flag-image']['id'];
-        // $img_url = !empty($img_id) ? wp_get_attachment_image_src($img_id, 'full')[0] : '';
-        // $img_alt = get_post_meta($img_id, '_wp_attachment_image_alt', true);
 
         ?>
         <div class="about-video-area">
@@ -169,14 +190,14 @@ class Yotta_Live_Video_Popup_Widget extends Widget_Base
                             <div class="waves wave-3"></div>
                         </div>
                     </div>
-                    <a class="video-icon video" data-rel="lightcase:myCollection" href="https://www.youtube.com/embed/6Ejb-QiJNGg">
-                        <i class="fas fa-play"></i>
+                    <a class="video-icon video-play-btn-02 mfp-iframe" <?php echo yotta_core()->render_elementor_link_attributes($settings['link']) ?> >
+                        <?php echo yotta_core()->render_elementor_icons($settings['icon']) ?>
                     </a>
                 </div>
             </div>
             <div class="about-video-content">
-                <h3 class="inner-title">Go Live in a Minutes</h3>
-                <p>We make it simple to launch in the cloud and hosting our best pricing and team accounts.</p>
+                <h3 class="inner-title"><?php echo esc_html($settings['title']) ?></h3>
+                <p><?php echo esc_html($settings['description']) ?></p>
             </div>
             <div class="bottom-shape"></div>
         </div>
