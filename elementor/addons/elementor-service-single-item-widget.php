@@ -145,8 +145,24 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
             'default' => 'ID',
             'description' => esc_html__('select order', 'yotta-core')
         ]);
+
         $this->end_controls_section();
 
+        $this->start_controls_section(
+            'settings_button_section',
+            [
+                'label' => esc_html__('Button Settings', 'yotta-core'),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+        $this->add_control('button_txt', [
+            'label' => esc_html__('Button Text', 'yotta-core'),
+            'type' => Controls_Manager::TEXT,
+            'default' => esc_html__('Get Started', 'yotta-core'),
+            'description' => esc_html__('Enter Your Button Text.', 'yotta-core'),
+            'label_block' => true
+        ]);
+        $this->end_controls_section();
 
         $this->start_controls_section(
             'slider_settings_section',
@@ -278,43 +294,252 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
         $this->end_controls_section();
 
 
+        // General
         $this->start_controls_section(
-            'styling_section',
+            'styling_general_section',
             [
-                'label' => esc_html__('Styling Settings', 'yotta-core'),
+                'label' => esc_html__('General', 'yotta-core'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_responsive_control(
+            'content_alignment',
+            [
+                'label' => esc_html__('Alignment', 'yotta-core'),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'yotta-core'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'yotta-core'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'yotta-core'),
+                        'icon' => 'eicon-text-align-right',
+                    ]
+                ],
+                'default' => 'center',
+                'selectors' => [
+                    '{{WRAPPER}} .hosting-item' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->end_controls_section();
+
+
+        // Title
+        $this->start_controls_section(
+            'styling_title_section',
+            [
+                'label' => esc_html__('Title', 'yotta-core'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control('title_color', [
-            'label' => esc_html__('Title Color', 'yotta-core'),
+            'label' => esc_html__('Color', 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
-                "{{WRAPPER}} .service-thumb .service-overlay .service-overlay-content .title" => "color: {{VALUE}}"
+                "{{WRAPPER}} .hosting-content .title" => "color: {{VALUE}}"
             ]
         ]);
         $this->add_group_control(Group_Control_Background::get_type(), [
             'label' => esc_html__('Background', 'yotta-core'),
             'name' => 'background',
-            'selector' => "{{WRAPPER}} .service-thumb::after"
+            'selector' => "{{WRAPPER}} .hosting-content .title"
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'hover_title_typography',
+            'label' => esc_html__('Typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .hosting-content .title"
         ]);
         $this->end_controls_section();
-        /* icon hover controls tabs end */
 
-
+        // Icon
         $this->start_controls_section(
-            'typography_section',
+            'styling_icon_section',
             [
-                'label' => esc_html__('Typography Settings', 'yotta-core'),
+                'label' => esc_html__('Icon', 'yotta-core'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
+        $this->add_responsive_control(
+            'align',
+            [
+                'label' => esc_html__('Alignment', 'yotta-core'),
+                'type' => Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'yotta-core'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'yotta-core'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'yotta-core'),
+                        'icon' => 'eicon-text-align-right',
+                    ]
+                ],
+                'default' => 'center',
+                'selectors' => [
+                    '{{WRAPPER}} .hosting-item .hosting-icon' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_control('icon_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .hosting-item .hosting-icon span" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Background::get_type(), [
+            'label' => esc_html__('Background', 'yotta-core'),
+            'name' => 'icon-bg',
+            'selector' => "{{WRAPPER}} .hosting-item .hosting-icon span"
+        ]);
+		$this->add_control(
+			'icon_padding',
+			[
+				'label' => esc_html__( 'Padding', 'yotta-core' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .hosting-item .hosting-icon span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
 
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'icon_border',
+				'label' => esc_html__( 'Border', 'yotta-core' ),
+				'selector' => '{{WRAPPER}} .hosting-item .hosting-icon span',
+			]
+		);
+		$this->add_control(
+			'icon_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .hosting-item .hosting-icon span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
         $this->add_group_control(Group_Control_Typography::get_type(), [
-            'name' => 'hover_title_typography',
-            'label' => esc_html__('Title Typography', 'yotta-core'),
-            'selector' => "{{WRAPPER}} .service-thumb .service-overlay .service-overlay-content .title"
+            'name' => 'icon_typography',
+            'label' => esc_html__('Typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .hosting-item .hosting-icon"
+        ]);
+        
+        $this->end_controls_section();
+
+
+        // Content
+        $this->start_controls_section(
+            'styling_content_section',
+            [
+                'label' => esc_html__('Content', 'yotta-core'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_control('content_txt_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .hosting-content .hosting-list" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'content_txt_typography',
+            'label' => esc_html__('Typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .hosting-content .hosting-list"
         ]);
         $this->end_controls_section();
+
+        // Button
+        $this->start_controls_section(
+            'styling_button_section',
+            [
+                'label' => esc_html__('Button', 'yotta-core'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->start_controls_tabs(
+            'style_tabs'
+        );
+        // Normal Mode
+        $this->start_controls_tab(
+            'style_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
+            ]
+        );
+        $this->add_control('normal_txt_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .hosting-item .hosting-content .hosting-btn a::after" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Background::get_type(), [
+            'label' => esc_html__('Background', 'yotta-core'),
+            'name' => 'button-normal-bg',
+            'selector' => "{{WRAPPER}} .hosting-item .hosting-content .hosting-btn a::before"
+        ]);
+        $this->end_controls_tab();
+
+        // Hover Mode
+        $this->start_controls_tab(
+            'style_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'plugin-name' ),
+            ]
+        );
+        $this->add_control('hover_txt_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}}  .hosting-item:hover .hosting-content .hosting-btn a" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Background::get_type(), [
+            'label' => esc_html__('Background', 'yotta-core'),
+            'name' => 'button-bg-hover',
+            'selector' => "{{WRAPPER}} .hosting-item:hover .hosting-content .hosting-btn a::before, .hosting-item.active .hosting-content .hosting-btn a::before"
+        ]);
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+        
+
+        $this->end_controls_section();
+
+        /* icon hover controls tabs end */
+
+
+        // $this->start_controls_section(
+        //     'typography_section',
+        //     [
+        //         'label' => esc_html__('Typography Settings', 'yotta-core'),
+        //         'tab' => Controls_Manager::TAB_STYLE,
+        //     ]
+        // );
+
+        // $this->add_group_control(Group_Control_Typography::get_type(), [
+        //     'name' => 'hover_title_typography',
+        //     'label' => esc_html__('Title Typography', 'yotta-core'),
+        //     'selector' => "{{WRAPPER}} .hosting-content .title"
+        // ]);
+
+        // $this->end_controls_section();
     }
 
     /**
@@ -369,13 +594,18 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
                     <div class="col-lg-<?php echo esc_attr($settings['column']); ?> col-md-6">
                         <div class="hosting-item">
                             <div class="hosting-icon">
-                                <img src="<?php echo esc_url($image_url); ?>"
+                                <?php 
+                                    if(isset($service_single_meta_data['service_icon'])){
+                                        echo "<span class=".esc_attr($service_single_meta_data['service_icon'])."></span>";
+                                    }
+                                ?>
+                                <img src="<?php echo esc_url($service_single_meta_data['service_icon']); ?>"
                                      alt="<?php echo esc_attr($image_alt); ?>">
                             </div>
                             <div class="hosting-content">
                                 <?php
-                                if (!empty($item['title'])) {
-                                    printf('<a %1$s ><h5 class="title">%2$s</h5></a>', the_permalink(), esc_html(get_the_title($post_id)));
+                                 if (!empty(get_the_title($post_id))) {
+                                    printf('<a href="%1$s" ><h5 class="title">%2$s</h5></a>', esc_url(get_the_permalink()), esc_html(get_the_title($post_id)));
                                 } ?>
                                 <ul class="hosting-list">
                                     <?php
@@ -387,7 +617,7 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
                                     ?>
                                 </ul>
                                 <div class="hosting-btn">
-                                    <a href="<?php the_permalink() ?>"><?php esc_html_e('Get Started', 'yotta-core') ?></a>
+                                    <a href="<?php the_permalink() ?>"><?php echo esc_html($settings['button_txt']); ?></a>
                                 </div>
                             </div>
                             <div class="bottom-shape"></div>
