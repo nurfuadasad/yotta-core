@@ -24,12 +24,22 @@ class Yotta_Counterup_One_Widget extends Widget_Base
         return 'yotta-counterupp-one-widget';
     }
 
+      /**
+     * Get tags name.
+     *
+     * Retrieve Elementor widget by tag name.
+     *
+     * @return string Tag name.
+     * @since 1.0.0
+     * @access public
+     *
+     */
     public function  get_keywords()
     {
-        return ['Counterup' , 'Time Left' , 'Clock' , "Ir Tech" , 'Yotta'];
+        return ['Counterup' , 'statistics' , 'Clock' , "Ir Tech" , 'Yotta'];
     }
     /**
-     * Get widget title.
+     * Get widget title
      *
      * Retrieve Elementor widget title.
      *
