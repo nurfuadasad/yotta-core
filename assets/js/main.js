@@ -285,7 +285,7 @@
 
     /*----------------------------------
     Gallery Slider Widget
---------------------------------*/
+    --------------------------------*/
     function activeGallerySlider($scope) {
         var el = $scope.find('.brands-carousel')
         var elSettings = el.data('settings');

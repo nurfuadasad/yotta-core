@@ -338,7 +338,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             'selector' => "{{WRAPPER}} .statistics-item .counterup-icon span"
         ]);
 		$this->add_control(
-			'icon_border_radius',
+			'icon_border_radius_hover',
 			[
 				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
 				'type' => Controls_Manager::DIMENSIONS,
