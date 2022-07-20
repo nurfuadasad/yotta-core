@@ -19,7 +19,7 @@ class Yotta_Countdown_Widget extends Widget_Base {
      *
      */
     public function get_name() {
-        return 'yotta-countdown-widget';
+        return 'yotta-countdownn-widget';
     }
 
     /**

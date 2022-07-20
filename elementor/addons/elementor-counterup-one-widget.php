@@ -21,9 +21,13 @@ class Yotta_Counterup_One_Widget extends Widget_Base
      */
     public function get_name()
     {
-        return 'yotta-counterup-one-widget';
+        return 'yotta-counterupp-one-widget';
     }
 
+    public function  get_keywords()
+    {
+        return ['Counterup' , 'Time Left' , 'Clock' , "Ir Tech" , 'Yotta'];
+    }
     /**
      * Get widget title.
      *
@@ -88,6 +92,17 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             ]
         );
 
+		$this->add_control(
+			'counterup_icon',
+			[
+				'label' => esc_html__( 'Icon', 'plugin-name' ),
+				'type' => Controls_Manager::ICONS,
+				'default' => [
+					'value' => 'fas fa-globe',
+					'library' => 'fa-solid',
+				],
+			]
+		);
         $this->add_control('title', [
             'label' => esc_html__('Title', 'yotta-core'),
             'type' => Controls_Manager::TEXT,
@@ -131,65 +146,213 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             ]
         );
         $this->end_controls_section();
+        // End Content
 
+        /* Start Styling */
+        // Title
         $this->start_controls_section(
-            'styling_settings_section',
+            'styling_title_section',
             [
-                'label' => esc_html__('Styling Settings', 'yotta-core'),
+                'label' => esc_html__('Title', 'yotta-core'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'title_style_tabs'
+        );
+        $this->start_controls_tab(
+            'title_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
+            ]
+        );
+        $this->add_control('title_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .statistics-item .statistics-content p" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'label' => esc_html__('Typography', 'yotta-core'),
+                'selector' => '{{WRAPPER}} .statistics-item .statistics-content p',
+            ]
+        );
+        $this->end_controls_tab();
+
+
+        $this->start_controls_tab(
+            'title_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'plugin-name' ),
+            ]
+        );
+        $this->add_control('title_hover_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .statistics-content:hover p" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'title__hover_typography',
+                'label' => esc_html__('Typography', 'yotta-core'),
+                'selector' => '{{WRAPPER}} .statistics-item .statistics-content p',
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section(); // End of Title Section
+        
+
+
+        // Number
+        $this->start_controls_section(
+            'styling_number_section',
+            [
+                'label' => esc_html__('Number', 'yotta-core'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control('number_color', [
-            'label' => esc_html__('Number Color', 'yotta-core'),
+            'label' => esc_html__('Color', 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
-                "{{WRAPPER}} .single-counterup-01 .content .count-wrap .count-num" => "color: {{VALUE}}",
-                "{{WRAPPER}} .single-counterup-01 .content .count-wrap " => "color: {{VALUE}}"
+                "{{WRAPPER}} .statistics-item .statistics-content .odo-title" => "color: {{VALUE}}",
+                "{{WRAPPER}} .statistics-item .statistics-content .title" => "color: {{VALUE}}"
             ]
         ]);
-        $this->add_control('title_color', [
-            'label' => esc_html__('Title Color', 'yotta-core'),
-            'type' => Controls_Manager::COLOR,
-            'selectors' => [
-                "{{WRAPPER}} .single-counterup-01 .content .title" => "color: {{VALUE}}",
-                "{{WRAPPER}} .single-counterup-01 .content .title span" => "color: {{VALUE}}"
-            ]
-        ]);
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'typography_settings_section',
-            [
-                'label' => esc_html__('Typography Settings', 'yotta-core'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
                 'name' => 'number_typography',
                 'label' => esc_html__('Number Typography', 'yotta-core'),
-                'selector' => '{{WRAPPER}} .single-counterup-01 .count-wrap .count-num',
-            ]
-        );
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'sign_typography',
-                'label' => esc_html__('Sing Typography', 'yotta-core'),
-                'selector' => '{{WRAPPER}} .single-counterup-01 .count-wrap .sing-plus',
-            ]
-        );
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'label' => esc_html__('Title Typography', 'yotta-core'),
-                'selector' => '{{WRAPPER}} .single-counterup-01 .title',
-                '{{WRAPPER}} .single-counterup-01 .title span',
+                'selectors' => [
+                    "{{WRAPPER}} .statistics-item .statistics-content .odo-area .odo-title",
+                    "{{WRAPPER}} .statistics-item .statistics-content .odo-area .title",
+                ]
             ]
         );
         $this->end_controls_section();
+
+
+
+        // Icon
+        $this->start_controls_section(
+            'styling_icon_section',
+            [
+                'label' => esc_html__(' Icon', 'yotta-core'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'icon_style_tabs'
+        );
+        // Normal Tab
+        $this->start_controls_tab(
+            'icon_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
+            ]
+        );
+        $this->add_control('icon_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'default' => '#333333',
+            'selectors' => [
+                "{{WRAPPER}} .statistics-item .counterup-icon" => "color: {{VALUE}}",
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Background::get_type(), [
+            'label' => esc_html__('Background', 'yotta-core'),
+            'name' => 'icon_bg',
+            'selector' => "{{WRAPPER}} .statistics-item .counterup-icon span"
+        ]);
+        $this->add_control(
+			'counterup_icon_padding',
+			[
+				'label' => esc_html__( 'Padding', 'yotta-core' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .statistics-item .counterup-icon span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+        $this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'icon_border',
+				'label' => esc_html__( 'Border', 'yotta-core' ),
+				'selector' => '{{WRAPPER}} .statistics-item .counterup-icon',
+			]
+		);
+		$this->add_control(
+			'icon_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'icon_typography',
+                'label' => esc_html__('Typography', 'yotta-core'),
+                'selector' => '{{WRAPPER}} .statistics-item .counterup-icon',
+            ]
+        );
+        $this->end_controls_tab();
+
+        // Hover Tab
+        $this->start_controls_tab(
+            'icon_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'plugin-name' ),
+            ]
+        );
+        $this->add_control('icon_hover_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'default' => '#333333',
+            'selectors' => [
+                "{{WRAPPER}} .statistics-item .counterup-icon" => "color: {{VALUE}}",
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Background::get_type(), [
+            'label' => esc_html__('Background', 'yotta-core'),
+            'name' => 'icon_hover_bg',
+            'selector' => "{{WRAPPER}} .statistics-item .counterup-icon span"
+        ]);
+		$this->add_control(
+			'icon_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+        $this->end_controls_section();  //End of Icon Section
     }
 
     /**
@@ -207,21 +370,35 @@ class Yotta_Counterup_One_Widget extends Widget_Base
 
         $title = $settings['title'];
         $number = $settings['number'];
-        $this->add_render_attribute('counterup_wrapper', 'class', 'single-counterup-01');
+        $icon = $settings['counterup_icon'];
+ 
+        $this->add_render_attribute('counterup_wrapper', 'class', 'statistics-item');
         $this->add_render_attribute('counterup_wrapper', 'style', 'text-align:' . $settings['text_align']);
-
+        $this->add_render_attribute('counterup_display', 'style', 'display:inline-block');
         ?>
+
+        <!-- Yotta Counterup -->
         <div <?php echo $this->get_render_attribute_string('counterup_wrapper'); ?>>
-            <div class="content">
-                <div class="count-wrap">
-                    <span class="count-num"><?php echo esc_html($number); ?></span>
-                    <?php if (!empty($settings['sign'])) : ?>
-                        <span class="sing-plus"><?php echo esc_html($settings['sign']) ?></span>
+                <div class="counterup-icon" <?php echo $this->get_render_attribute_string('counterup_display'); ?>>
+                    <?php if (isset($icon)) : ?>
+                            <span class="<?php echo esc_attr($icon['value']); ?>"></span>                  
                     <?php endif; ?>
+                    <!-- <img src="assets/images/icon/icon-5.png" alt="icon"> -->
                 </div>
-                <h4 class="title"><?php echo esc_html($title); ?></h4>
+                <div class="statistics-content">
+                    <div class="odo-area">
+                        <h3 class="odo-title odometer" data-odometer-final="<?php echo esc_html($number); ?>">0</h3>
+                        <h3 class="title">
+                            <?php if (!empty($settings['sign'])) : ?>
+                                <?php echo esc_html($settings['sign']) ?>
+                            <?php endif; ?>
+                        </h3>
+                    </div>
+                    <p><?php echo esc_html($title); ?></p>
+                </div>
             </div>
         </div>
+
         <?php
     }
 }
