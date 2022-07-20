@@ -69,16 +69,16 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 			}
 			$elementor_widgets = array(
 				'accordion',
-//				'blockquote',
-//				'blockquote-two',
-//				'blog-slider-one',
-//				'blog-slider-two',
+				'blockquote',
+				'blockquote-two',
+				'blog-slider-one',
+				'blog-slider-two',
 				'button-one',
 //				'call-to-action-item',
 //				'choose-single-item-one',
 //				'contact-info-list-one',
-//				'countdown',
-//				'counterup-one',
+				'countdown',
+				'counterup-one',
 //				'empty-div',
 //				'event-trainer',
 //				'events-grid',
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 //				'training-single-grid',
 //				'training-single-slider',
 //				'training-single-slider-two',
-//				'video-hover',
+				'video-hover',
 			);
 
 			$elementor_widgets = apply_filters( 'yotta_elementor_widget', $elementor_widgets );
