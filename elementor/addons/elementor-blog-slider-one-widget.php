@@ -600,27 +600,28 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                     $comment_text = ($comments_count > 1) ? 'Comments (' . $comments_count . ')' : 'Comment (' . $comments_count . ')';
                     ?>
                     <div class="col-lg-<?php echo esc_attr($settings['column']); ?> col-md-6">
+                    
+                        <!-- blog html markup according to yotta template -->
                         <div class="blog-item margin-bottom-30">
                             <div class="blog-thumb">
-                                <img src="<?php echo esc_url($img_url); ?>"
-                                     alt="<?php echo esc_attr($img_alt); ?>">
-                                <div class="blog-date">
-                                    <?php
-                                    yotta()->posted_on();
-                                    ?>
-                                </div>
+                                <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($img_alt); ?>">
                             </div>
                             <div class="blog-content">
                                 <div class="blog-post-meta">
-                                    <?php yotta()->posted_by(); ?>
-                                    <span class="category"><?php the_category(', '); ?></span>
+                                    <span class="user"><?php yotta()->posted_by(); ?></span>
+                                    <span class="date"><?php yotta()->posted_on(); ?></span>
                                 </div>
-                                <h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                <h4 class="title">
+                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?>.</a>
+                                </h4>
                                 <?php if ($settings['excerpt_switch'] == 'yes') {
-                                    Yotta_Excerpt($settings['excerpt_length']);
-                                } ?>
+                                        Yotta_Excerpt($settings['excerpt_length']);
+                                    } ?>
                             </div>
                         </div>
+
+
+
                     </div>
                 <?php
                 endwhile;
