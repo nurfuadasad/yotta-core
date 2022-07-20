@@ -445,7 +445,7 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .client-quote" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-header .client-quote" => "color: {{VALUE}}"
             ]
         ]);
         $this->add_control('name_color', [
@@ -474,7 +474,7 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Ratings Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .client-header .client-ratings .ratings i" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-ratings .ratings i" => "color: {{VALUE}}"
             ]
         ]);
 
@@ -498,6 +498,11 @@ Fight School has specialized.", 'yotta-core'),
             'name' => 'designation_typography',
             'label' => esc_html__('Designation Typography', 'yotta-core'),
             "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-footer-user-content .designation"
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'icon_typography',
+            'label' => esc_html__('Icon Typography', 'yotta-core'),
+            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-header .client-quote"
         ]);
         $this->end_controls_section();
     }
@@ -551,7 +556,7 @@ Fight School has specialized.", 'yotta-core'),
                                 <span class="ratings">
                                     <?php
                                         for ($i = 0; $i < $item['ratings_count']; $i++) {
-                                            print '<i class="fa fa-star"></i>';
+                                            print( '<i class="fa fa-star"></i>');
                                         }
                                     ?>
                                 </span>
