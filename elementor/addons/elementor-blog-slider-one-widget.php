@@ -339,14 +339,14 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
             'label' => esc_html__('Date Color', 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
-                "{{WRAPPER}} .blog-thumb .blog-date .posted-on" => "color: {{VALUE}}"
+                "{{WRAPPER}} .blog-content .blog-post-meta .date" => "color: {{VALUE}}"
             ]
         ]);
         $this->add_control('normal_post_date_bg_color', [
             'label' => esc_html__('Date Background Color', 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
-                "{{WRAPPER}} .blog-thumb .blog-date" => "background-color: {{VALUE}}"
+                "{{WRAPPER}} .blog-content .blog-post-meta .date" => "background-color: {{VALUE}}"
             ]
         ]);
         $this->add_control('normal_post_title_color', [
@@ -600,7 +600,7 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                     $comment_text = ($comments_count > 1) ? 'Comments (' . $comments_count . ')' : 'Comment (' . $comments_count . ')';
                     ?>
                     <div class="col-lg-<?php echo esc_attr($settings['column']); ?> col-md-6">
-                    
+
                         <!-- blog html markup according to yotta template -->
                         <div class="blog-item margin-bottom-30">
                             <div class="blog-thumb">
