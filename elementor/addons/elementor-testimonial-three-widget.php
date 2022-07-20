@@ -543,11 +543,15 @@ Fight School has specialized.", 'yotta-core'),
                         $image_url = !empty($image_id) ? wp_get_attachment_image_src($image_id, 'full', false)[0] : '';
                         $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
                         ?>
+
+
+
+
                         <div class="single-testimonial-item-03">
                             <div class="content-top">
                                 <div class="icon">
                                     <?php
-                                    Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
+                                        Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
                                     ?>
                                 </div>
                                 <div class="thumb">
@@ -587,6 +591,7 @@ Fight School has specialized.", 'yotta-core'),
                 <?php endif; ?>
                 <div class="slider-dots"></div>
             </div>
+            
         </div>
         <?php
     }
