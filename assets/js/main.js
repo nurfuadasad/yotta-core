@@ -1,96 +1,97 @@
-;(function ($) {
+;
+(function($) {
 
     "use strict";
     /*---------------------------------------------------
       * Initialize all widget js in elementor init hook
       ---------------------------------------------------*/
-    $(window).on('elementor/frontend/init', function () {
+    $(window).on('elementor/frontend/init', function() {
         // Brand Slider
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-brand-carousel-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-brand-carousel-one-widget.default', function($scope) {
             activeBrandSlider($scope);
         });
         // Brand Slider
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-image-gallery-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-image-gallery-widget.default', function($scope) {
             activeGallerySlider($scope);
         });
         // Case Slider
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-service-single-item-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-service-single-item-widget.default', function($scope) {
             activePerformanceSliderOne($scope);
         });
         // Case Slider
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-course-slider-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-course-slider-one-widget.default', function($scope) {
             activePerformanceSliderOne($scope);
         });
         // Header Slider Three
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-header-slider-two-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-header-slider-two-widget.default', function($scope) {
             activeHeaderSliderOne($scope);
         });
         // Service Slider
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-service-slider-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-service-slider-one-widget.default', function($scope) {
             activeServiceGridSliderOne($scope);
         });
         // Service Slider Four
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-service-slider-four-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-service-slider-four-widget.default', function($scope) {
             activeServiceGridSliderOne($scope);
         });
         // Testimonial Slider one
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-one-widget.default', function($scope) {
             activeTestimonialSliderOne($scope);
         });
         // Testimonial Slider two
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-two-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-two-widget.default', function($scope) {
             activeTestimonialSliderOne($scope);
         });
         // Testimonial Slider three
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-three-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-three-widget.default', function($scope) {
             activeTestimonialSliderOne($scope);
         });
         // Packages Slider one
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-widget.default', function($scope) {
             activeTestimonialSliderOne($scope);
         });
         // Packages Slider two
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-two-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-two-widget.default', function($scope) {
             activeTestimonialSliderOne($scope);
         });
         // Packages Slider one
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-training-single-slider-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-training-single-slider-widget.default', function($scope) {
             activeTestimonialSliderOne($scope);
         });
         // Team Slider
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-team-member-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-team-member-one-widget.default', function($scope) {
             activeTeamMemberSliderOne($scope);
         });
         // Team Slider Two
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-team-member-two-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-team-member-two-widget.default', function($scope) {
             activeTeamMemberSliderOne($scope);
         });
         // Blog Slider
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-blog-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-blog-one-widget.default', function($scope) {
             activeBlogGridSliderOne($scope);
         });
         // Blog Slider Two
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-blog-two-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-blog-two-widget.default', function($scope) {
             activeBlogGridSliderOne($scope);
         });
         // Blog Slider Three
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-blog-three-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-blog-three-widget.default', function($scope) {
             activeBlogGridSliderOne($scope);
         });
         /* Counter Up */
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-counterup-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-counterup-one-widget.default', function($scope) {
             counterupInit($scope.find('.count-num'));
         });
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-countdown-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-countdown-widget.default', function($scope) {
             countdownInit($scope.find('.mycountdown'));
         });
 
     });
 
 
-    $(window).on('elementor/frontend/init', function () {
+    $(window).on('elementor/frontend/init', function() {
 
-        elementorFrontend.hooks.addAction('frontend/element_ready/global', function ($scope, $) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/global', function($scope, $) {
             progressBarInit();
         });
 
@@ -101,7 +102,7 @@
      * ---------------------------*/
     function countdownInit($scope) {
         var countdownTime = $scope.data('countdown');
-        $scope.countdown(countdownTime, function (event) {
+        $scope.countdown(countdownTime, function(event) {
             $('.month').text(
                 event.strftime('%m')
             );
@@ -121,7 +122,7 @@
     }
 
     //plan-tab-switcher
-    $('.plan-tab-switcher').on('click', function () {
+    $('.plan-tab-switcher').on('click', function() {
         $(this).toggleClass('active');
         $('.plan-area').toggleClass('change-subs-duration');
         $('.plan-tab').toggleClass('change-color');
@@ -142,28 +143,28 @@
     }
     var $caseStudyThreeContainer = $('.grid');
     if ($caseStudyThreeContainer.length > 0) {
-        $('.grid').imagesLoaded(function () {
+        $('.grid').imagesLoaded(function() {
             var caseMasonry = $caseStudyThreeContainer.isotope({
                 itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
                 masonry: {
                     gutter: 0
                 }
             });
-            $(document).on('click', 'button', function () {
+            $(document).on('click', 'button', function() {
                 var filterValue = $(this).attr('data-filter');
                 caseMasonry.isotope({
                     filter: filterValue
                 });
             });
         });
-        $(document).on('click', 'button', function () {
+        $(document).on('click', 'button', function() {
             $(this).siblings().removeClass('active');
             $(this).addClass('active');
         });
     }
 
     // faq
-    $('.faq-wrapper .faq-title').on('click', function (e) {
+    $('.faq-wrapper .faq-title').on('click', function(e) {
         var element = $(this).parent('.faq-item');
         if (element.hasClass('open')) {
             element.removeClass('open');
@@ -179,8 +180,8 @@
         }
     });
     /*-----------------------------
-    *   Header Slider
-    * ----------------------------*/
+     *   Header Slider
+     * ----------------------------*/
 
     // main-slider
     function activeHeaderSliderOne($scope) {
@@ -203,8 +204,7 @@
             appendDots: $scope.find('.slick-carousel-controls .slider-dots'),
             prevArrow: '<div class="prev-arrow">' + elSettings.navleft + '</div>',
             nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 1,
@@ -256,8 +256,7 @@
             prevArrow: '<div class="prev-arrow">' + elSettings.navleft + '</div>',
             nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
             cssEase: 'linear',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 3,
@@ -285,7 +284,7 @@
 
     /*----------------------------------
     Gallery Slider Widget
---------------------------------*/
+    --------------------------------*/
     function activeGallerySlider($scope) {
         var el = $scope.find('.brands-carousel')
         var elSettings = el.data('settings');
@@ -308,8 +307,7 @@
             prevArrow: '<div class="prev-arrow">' + elSettings.navleft + '</div>',
             nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
             cssEase: 'linear',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 2,
@@ -338,7 +336,7 @@
 
     var $scprogressBar = $('.slider-controlprogress');
     var $progressBarLabel = $('.slider__label_Progress');
-    $('.brands-carousel').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+    $('.brands-carousel').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
         var calc = ((nextSlide) / (slick.slideCount - 1)) * 100;
         $scprogressBar
             .css('background-size', calc + '% 100%')
@@ -348,8 +346,8 @@
     });
 
     /*----------------------------
-       * performance Slider
-       * --------------------------*/
+     * performance Slider
+     * --------------------------*/
     function activePerformanceSliderOne($scope) {
         var el = $scope.find('.service-carousel');
         var elSettings = el.data('settings');
@@ -374,8 +372,7 @@
             nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
             centerPadding: '0',
             cssEase: 'linear',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 2,
@@ -404,8 +401,8 @@
 
 
     /*----------------------------
-    * Testimonial Slider
-    * --------------------------*/
+     * Testimonial Slider
+     * --------------------------*/
     function activeTestimonialSliderOne($scope) {
         var el = $scope.find('.testimonial-carousel');
         var elSettings = el.data('settings');
@@ -431,8 +428,7 @@
             nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
             centerPadding: elSettings.centerpadding + 'px',
             cssEase: 'linear',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 3,
@@ -475,8 +471,8 @@
     }
 
     /*----------------------------
-    * Blog Post Grid Slider
-    * --------------------------*/
+     * Blog Post Grid Slider
+     * --------------------------*/
     function activeBlogGridSliderOne($scope) {
         var el = $scope.find('.blog-grid-carousel');
         var elSettings = el.data('settings');
@@ -496,8 +492,7 @@
             autoplaySpeed: elSettings.autoplaytimeout,
             autoplay: elSettings.autoplay === 'yes',
             cssEase: 'linear',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 2,
@@ -526,8 +521,8 @@
 
 
     /*----------------------------
-       * Service Grid Slider
-       * --------------------------*/
+     * Service Grid Slider
+     * --------------------------*/
     function activeServiceGridSliderOne($scope) {
         var el = $scope.find('.service-grid-carousel');
         var elSettings = el.data('settings');
@@ -551,8 +546,7 @@
             centerMode: elSettings.center === 'yes',
             centerPadding: '0',
             cssEase: 'linear',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 2,
@@ -607,8 +601,7 @@
             centerMode: elSettings.center === 'yes',
             centerPadding: '0',
             cssEase: 'linear',
-            responsive: [
-                {
+            responsive: [{
                     breakpoint: 1024,
                     settings: {
                         slidesToShow: 2,
@@ -652,15 +645,15 @@
         });
     }
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         /*--------------------
           wow js init
       ---------------------*/
         new WOW().init();
 
         /*---------------------------------
-        * Magnific Popup
-        * --------------------------------*/
+         * Magnific Popup
+         * --------------------------------*/
         $('.video-play-btn,.video-play-btn-02,.play-video-btn,.button-video').magnificPopup({
             type: 'video',
             removalDelay: 400,
@@ -670,7 +663,4 @@
     });
 
 
-
-
 })(jQuery);
-

@@ -342,7 +342,7 @@ Fight School has specialized.", 'yotta-core'),
         );
         $this->end_controls_section();
 
-
+        // Style Tab
         $this->start_controls_section('styling_section', [
             'label' => esc_html__('Styling Settings', 'yotta-core'),
             'tab' => Controls_Manager::TAB_STYLE
@@ -391,7 +391,7 @@ Fight School has specialized.", 'yotta-core'),
                 ],
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    "{{WRAPPER}} .single-testimonial-item-03 .description" => 'margin-bottom: {{SIZE}}{{UNIT}};'
+                    "{{WRAPPER}} .single-testimonial-item-03 .client-content" => 'margin-bottom: {{SIZE}}{{UNIT}};'
                 ]
             ]
         );
@@ -437,7 +437,7 @@ Fight School has specialized.", 'yotta-core'),
                 ],
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    "{{WRAPPER}} .single-testimonial-item-03 .author-meta" => 'padding: {{SIZE}}{{UNIT}};'
+                    "{{WRAPPER}} .single-testimonial-item-03 .client-footer-user-content .title" => 'padding: {{SIZE}}{{UNIT}};'
                 ]
             ]
         );
@@ -445,14 +445,14 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .content-top .icon" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-header .client-quote" => "color: {{VALUE}}"
             ]
         ]);
         $this->add_control('name_color', [
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Name Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .author-meta .title" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-footer-user-content .title" => "color: {{VALUE}}"
             ]
         ]);
 
@@ -460,21 +460,21 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Description Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .description" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-content p" => "color: {{VALUE}}"
             ]
         ]);
         $this->add_control('designation_color', [
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Designation Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .author-meta .designation" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-footer-user-content .designation" => "color: {{VALUE}}"
             ]
         ]);
         $this->add_control('rating_color', [
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Ratings Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .ratings i" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-ratings .ratings i" => "color: {{VALUE}}"
             ]
         ]);
 
@@ -487,17 +487,22 @@ Fight School has specialized.", 'yotta-core'),
         $this->add_group_control(Group_Control_Typography::get_type(), [
             'name' => 'name_typography',
             'label' => esc_html__('Name Typography', 'yotta-core'),
-            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .author-meta .title"
+            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-footer-user-content .title"
         ]);
         $this->add_group_control(Group_Control_Typography::get_type(), [
             'name' => 'description_typography',
             'label' => esc_html__('Description Typography', 'yotta-core'),
-            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .content p"
+            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-content p"
         ]);
         $this->add_group_control(Group_Control_Typography::get_type(), [
             'name' => 'designation_typography',
             'label' => esc_html__('Designation Typography', 'yotta-core'),
-            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .content .designation"
+            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-footer-user-content .designation"
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'icon_typography',
+            'label' => esc_html__('Icon Typography', 'yotta-core'),
+            "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-header .client-quote"
         ]);
         $this->end_controls_section();
     }
@@ -543,41 +548,46 @@ Fight School has specialized.", 'yotta-core'),
                         $image_url = !empty($image_id) ? wp_get_attachment_image_src($image_id, 'full', false)[0] : '';
                         $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
                         ?>
-                        <div class="single-testimonial-item-03">
-                            <div class="content-top">
-                                <div class="icon">
+
+                    <div class="client-item single-testimonial-item-03">
+                        <div class="client-header">
+                            <?php if (!empty($item['ratings'])): ?>
+                            <div class="client-ratings">
+                                <span class="ratings">
                                     <?php
-                                    Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
-                                    ?>
-                                </div>
-                                <div class="thumb">
-                                    <img src="<?php echo esc_url($image_url); ?>"
-                                         alt="<?php echo esc_attr($image_alt); ?>">
-                                </div>
-                            </div>
-                            <div class="content">
-                                <p class="description"><?php echo esc_html($item['description']); ?></p>
-                                <div class="author-meta">
-                                    <div class="meta-info">
-                                        <h4 class="title"><?php echo esc_html($item['name']); ?></h4>
-                                        <?php
-                                        if (!empty($item['designation_status'])) {
-                                            printf('<span class="designation">%1$s</span>', esc_html($item['designation']));
+                                        for ($i = 0; $i < $item['ratings_count']; $i++) {
+                                            print( '<i class="fa fa-star"></i>');
                                         }
-                                        ?>
-                                    </div>
-                                    <?php if (!empty($item['ratings'])): ?>
-                                        <div class="ratings">
-                                            <?php
-                                            for ($i = 0; $i < $item['ratings_count']; $i++) {
-                                                print '<i class="fa fa-star"></i>';
-                                            }
-                                            ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
+                                    ?>
+                                </span>
+                            </div>
+                            <?php endif; ?>
+                            <div class="client-quote">
+                            <?php
+                                Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
+                            ?>
                             </div>
                         </div>
+                        <div class="client-content">
+                            <p><?php echo esc_html($item['description']); ?></p>
+                        </div>
+                        <div class="client-footer">
+                            <div class="client-footer-user-thumb">
+                                <img src="<?php echo esc_url($image_url); ?>"
+                                    alt="<?php echo esc_attr($image_alt); ?>">
+                            </div>
+                            <div class="client-footer-user-content">
+                                <h6 class="title"><?php echo esc_html($item['name']); ?></h6>
+                                <?php
+                                    if (!empty($item['designation_status'])) {
+                                        printf('<span class="designation">%1$s</span>', esc_html($item['designation']));
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -587,6 +597,7 @@ Fight School has specialized.", 'yotta-core'),
                 <?php endif; ?>
                 <div class="slider-dots"></div>
             </div>
+            
         </div>
         <?php
     }

@@ -24,12 +24,22 @@ class Yotta_Counterup_One_Widget extends Widget_Base
         return 'yotta-counterupp-one-widget';
     }
 
+      /**
+     * Get tags name.
+     *
+     * Retrieve Elementor widget by tag / keyword name.
+     *
+     * @return string Tag name.
+     * @since 1.0.0
+     * @access public
+     *
+     */
     public function  get_keywords()
     {
-        return ['Counterup' , 'Time Left' , 'Clock' , "Ir Tech" , 'Yotta'];
+        return ['Counterup' , 'statistics' , 'Clock' , "Ir Tech" , 'Yotta'];
     }
     /**
-     * Get widget title.
+     * Get widget title
      *
      * Retrieve Elementor widget title.
      *
@@ -158,6 +168,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             ]
         );
 
+         // Normal Tab
         $this->start_controls_tabs(
             'title_style_tabs'
         );
@@ -184,7 +195,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
         );
         $this->end_controls_tab();
 
-
+        // Hover Tab
         $this->start_controls_tab(
             'title_hover_tab',
             [
@@ -213,13 +224,23 @@ class Yotta_Counterup_One_Widget extends Widget_Base
         $this->end_controls_section(); // End of Title Section
         
 
-
         // Number
         $this->start_controls_section(
             'styling_number_section',
             [
                 'label' => esc_html__('Number', 'yotta-core'),
                 'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'number_style_tabs'
+        );
+        // Normal Tab
+        $this->start_controls_tab(
+            'number_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
             ]
         );
         $this->add_control('number_color', [
@@ -241,9 +262,27 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                 ]
             ]
         );
-        $this->end_controls_section();
+        $this->end_controls_tab();
+        // Hover Tab
+        $this->start_controls_tab(
+            'number_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'plugin-name' ),
+            ]
+        );
 
+        $this->add_control('number_hover_color', [
+            'label' => esc_html__('Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .statistics-item:hover .statistics-content .odo-title" => "color: {{VALUE}}",
+                "{{WRAPPER}} .statistics-item:hover .statistics-content .title" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
 
+        $this->end_controls_section(); // End of Number Section
 
         // Icon
         $this->start_controls_section(
@@ -253,7 +292,6 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
-
         $this->start_controls_tabs(
             'icon_style_tabs'
         );
@@ -275,7 +313,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
         $this->add_group_control(Group_Control_Background::get_type(), [
             'label' => esc_html__('Background', 'yotta-core'),
             'name' => 'icon_bg',
-            'selector' => "{{WRAPPER}} .statistics-item .counterup-icon span"
+            'selector' => "{{WRAPPER}} .statistics-item .counterup-icon"
         ]);
         $this->add_control(
 			'counterup_icon_padding',
@@ -284,7 +322,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .statistics-item .counterup-icon span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .statistics-item .counterup-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -329,15 +367,16 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             'type' => Controls_Manager::COLOR,
             'default' => '#333333',
             'selectors' => [
-                "{{WRAPPER}} .statistics-item .counterup-icon" => "color: {{VALUE}}",
+                "{{WRAPPER}} .statistics-item:hover .counterup-icon" => "color: {{VALUE}}",
             ]
         ]);
         $this->add_group_control(Group_Control_Background::get_type(), [
             'label' => esc_html__('Background', 'yotta-core'),
             'name' => 'icon_hover_bg',
-            'selector' => "{{WRAPPER}} .statistics-item .counterup-icon span"
+            'selector' => "{{WRAPPER}} .statistics-item:hover .counterup-icon"
         ]);
 		$this->add_control(
+<<<<<<< HEAD
             'icon_border_radius_hover',
             [
                 'label' => esc_html__('Border Radius', 'yotta-core'),
@@ -348,11 +387,50 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                 ],
             ]
         );
+=======
+			'icon_border_radius_hover',
+			[
+				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+>>>>>>> main
 
         $this->end_controls_tab();
-
         $this->end_controls_tabs();
+
         $this->end_controls_section();  //End of Icon Section
+
+
+        //  Separator
+        $this->start_controls_section(
+            'styling_separator_section',
+            [
+                'label' => esc_html__('Separator', 'yotta-core'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_control('separator_color_1', [
+            'label' => esc_html__('Color 1', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .statistics-item::before" => "background-color: {{VALUE}}",
+            ]
+        ]);
+        $this->add_control('separator_color_2', [
+            'label' => esc_html__('Color 2', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .statistics-item::after" => "background-color: {{VALUE}}",
+            ]
+        ]);
+        $this->end_controls_section(); // End of Number Section
+
+
     }
 
     /**
@@ -396,7 +474,11 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                     </div>
                     <p><?php echo esc_html($title); ?></p>
                 </div>
+<<<<<<< HEAD
             </div>
+=======
+        </div>
+>>>>>>> main
 
         <?php
     }
