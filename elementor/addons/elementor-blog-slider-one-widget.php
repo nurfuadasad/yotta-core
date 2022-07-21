@@ -620,8 +620,6 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                             </div>
                         </div>
 
-
-
                     </div>
                 <?php
                 endwhile;
