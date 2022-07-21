@@ -37,9 +37,18 @@ class Yotta_Testimonial_Three_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Testimonial: 03', 'yotta-core');
+        return esc_html__('Yotta: Testimonial 1', 'yotta-core');
     }
-
+    /**
+     * Get widget keyword.
+     *
+     * Retrieve Elementor widget by keyword.
+     *
+     * @return string Widget keywords.
+     * @since 1.0.0
+     * @access public
+     *
+     */
     public function get_keywords()
     {
         return ['Team', 'Member', 'Testimonial', "ThemeIM", 'Yotta'];
@@ -474,7 +483,7 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Ratings Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .client-ratings .ratings i" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-ratings .ratings" => "color: {{VALUE}}"
             ]
         ]);
 

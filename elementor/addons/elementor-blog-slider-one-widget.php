@@ -382,7 +382,7 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
         $this->add_control(
 			'width',
 			[
-				'label' => esc_html__( 'Thumbnail Space Bottom', 'plugin-name' ),
+				'label' => esc_html__( 'Thumbnail Bottom Gap', 'plugin-name' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%' ],
 				'range' => [
@@ -664,7 +664,6 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                                     } ?>
                             </div>
                         </div>
-
                     </div>
                 <?php
                 endwhile;
