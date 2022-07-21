@@ -376,7 +376,6 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             'selector' => "{{WRAPPER}} .statistics-item:hover .counterup-icon"
         ]);
 		$this->add_control(
-<<<<<<< HEAD
             'icon_border_radius_hover',
             [
                 'label' => esc_html__('Border Radius', 'yotta-core'),
@@ -387,18 +386,6 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                 ],
             ]
         );
-=======
-			'icon_border_radius_hover',
-			[
-				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
->>>>>>> main
 
         $this->end_controls_tab();
         $this->end_controls_tabs();
