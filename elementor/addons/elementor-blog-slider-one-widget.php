@@ -36,7 +36,7 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Blog: Slider 01', 'yotta-core');
+        return esc_html__('Yotta: Blog Slider 01', 'yotta-core');
     }
 
     /**
@@ -95,7 +95,7 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                 'default' => 'for-slider',
                 'options' => [
                     'for-grid' => esc_html__('Grid System', 'yotta-core'),
-                    'for-slider' => esc_html__('Slider System', 'yotta-core'),
+                    'for-slider' => esc_html__('Slider System', 'yotta-core')
                 ],
             ]
         );
