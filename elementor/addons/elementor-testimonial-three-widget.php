@@ -487,6 +487,25 @@ Fight School has specialized.", 'yotta-core'),
             ]
         ]);
 
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'item_box_shadow',
+				'label' => esc_html__( 'Box Shadow', 'plugin-name' ),
+				'selector' => '{{WRAPPER}} .single-testimonial-item-03 ',
+			]
+		);
+        $this->add_control(
+            'item_margin',
+            [
+                'label' => esc_html__('margin', 'yotta-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .single-testimonial-item-03' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
         $this->end_controls_section();
 
         $this->start_controls_section('typography_section', [
