@@ -30,7 +30,6 @@ define( 'YOTTA_CORE_ROOT_URL', plugin_dir_url( __FILE__ ) );
 define( 'YOTTA_CORE_SELF_PATH', 'yotta-core/yotta-core.php' );
 define( 'YOTTA_CORE_VERSION', '1.0.0' );
 define( 'YOTTA_CORE_INC', YOTTA_CORE_ROOT_PATH .'/inc');
-define( 'YOTTA_HEADER_FOOTER_INC', YOTTA_CORE_ROOT_PATH .'/themeim-header-footer-builder');
 define( 'YOTTA_CORE_LIB', YOTTA_CORE_ROOT_PATH .'/lib');
 define( 'YOTTA_CORE_ELEMENTOR', YOTTA_CORE_ROOT_PATH .'/elementor');
 define( 'YOTTA_CORE_DEMO_IMPORT', YOTTA_CORE_ROOT_PATH .'/demo-import');
@@ -77,9 +76,12 @@ if ( !yotta_core()->is_yotta_active()) {
  * @package yotta
  * @since 1.0.0
  */
-if ( file_exists( YOTTA_HEADER_FOOTER_INC . '/themeim-header-footer.php' ) ) {
-    require_once YOTTA_HEADER_FOOTER_INC . '/themeim-header-footer.php';
+
+if ( file_exists( YOTTA_CORE_ROOT_PATH . '/theme-builder/themeim-header-footer.php' ) ) {
+    require_once YOTTA_CORE_ROOT_PATH . '/theme-builder/themeim-header-footer.php';
 }
+
+
 
 
 /**
