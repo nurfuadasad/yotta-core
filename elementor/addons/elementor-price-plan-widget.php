@@ -149,7 +149,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
         $repeater->add_control('title', [
             'label' => esc_html__('Title', 'yotta-core'),
             'type' => Controls_Manager::TEXT,
-            'default' => esc_html__('Basic', 'yotta-core'),
+            'default' => esc_html__('Basic Plan', 'yotta-core'),
             'description' => esc_html__('enter title', 'yotta-core')
 
         ]);
@@ -158,7 +158,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
                 'label' => esc_html__('Description', 'yotta-core'),
                 'type' => Controls_Manager::TEXTAREA,
                 'description' => esc_html__('enter description', 'yotta-core'),
-                'default' => esc_html__('Access to all classes & membership', 'yotta-core')
+                'default' => esc_html__('Self-managed plans', 'yotta-core')
             ]);
         $repeater->add_control('price', [
 
@@ -190,7 +190,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
 
             'type' => Controls_Manager::TEXT,
 
-            'default' => esc_html__('/year', 'yotta-core'),
+            'default' => esc_html__('/mo', 'yotta-core'),
 
             'description' => esc_html__('enter month', 'yotta-core')
 
@@ -199,7 +199,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
         $repeater->add_control('btn_text', [
             'label' => esc_html__('Button Text', 'yotta-core'),
             'type' => Controls_Manager::TEXT,
-            'default' => esc_html__('GO BASIC', 'yotta-core'),
+            'default' => esc_html__('Get Started Now', 'yotta-core'),
             'description' => esc_html__('enter button text', 'yotta-core')
 
         ]);
@@ -221,7 +221,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
 
                 'type' => Controls_Manager::TEXTAREA,
 
-                'default' => esc_html__('Fifo – Fly In / Fly Out', 'yotta-core'),
+                'default' => esc_html__('AMD EPYC™ 7351P', 'yotta-core'),
 
                 'description' => esc_html__('enter feature item', 'yotta-core')
 
@@ -615,24 +615,34 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
                             continue;
                         }
                         ?>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
                             <div class="plan-item margin-bottom-30 <?php echo esc_attr($details_item['active_package']); ?>">
-                                <?php
-                                if ($details_item['active_package'] === 'active'){
-                                    printf('<span class="plan-badge-top"> '.esc_html('POPULAR').'</span>');
-                                }
-                                ?>
-                                <div class="plan-content">
-                                    <div class="plan-header">
-                                        <div class="plan-badge-area">
-                                            <span class="plan-badge red"><?php echo esc_html($details_item['title']); ?></span>
-                                        </div>
-                                        <p class="description"><?php echo esc_html($details_item['description']); ?></p>
+                                <div class="plan-header-area">
+                                    <div class="plan-icon">
+                                        <img src="<?php echo esc_url($image_url) ?>"
+                                             alt="<?php echo esc_attr($image_alt) ?>">
                                     </div>
+                                    <div class="plan-header">
+                                        <?php
+                                        if ($details_item['active_package'] === 'active') {
+                                            printf('<span class="plan-badge"> ' . esc_html('POPULAR') . '</span>');
+                                        }
+                                        ?>
+                                        <h3 class="title"><?php echo esc_html($details_item['title']); ?></h3>
+                                        <p><?php echo esc_html($details_item['description']); ?></p>
+                                    </div>
+                                </div>
+                                <div class="plan-body">
                                     <div class="plan-price-area">
-                                        <h2 class="price-title">
-                                            <sup><?php echo esc_html($details_item['sign']); ?></sup><?php echo esc_html($details_item['price']); ?>
-                                            <sub><?php echo esc_html($details_item['month']); ?></sub></h2>
+                                        <h3 class="price-title"><?php echo esc_html($details_item['sign']);
+                                            echo esc_html($details_item['price']); ?>
+                                            <span><?php echo esc_html($details_item['month']); ?></span></h3>
+                                        <div class="plan-btn">
+                                            <a href="<?php echo esc_url($details_item['btn_link']['url']); ?>"
+                                               class="btn--base button-animation"><i
+                                                        class="las la-plus"></i> <?php echo esc_html($details_item['btn_text']); ?>
+                                            </a>
+                                        </div>
                                     </div>
                                     <ul class="plan-list">
                                         <?php
@@ -643,16 +653,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
                                         ?>
                                     </ul>
                                 </div>
-                                <div class="plan-footer">
-                                    <a href="<?php echo esc_url($details_item['btn_link']['url']); ?>">
-                                        <h3 class="title"><?php echo esc_html($details_item['btn_text']); ?></h3>
-                                        <div class="plan-btn"><i class="fas fa-angle-right"></i></div>
-                                    </a>
-                                </div>
-                                <div class="plan-overlay">
-                                    <img src="<?php echo esc_url($image_url) ?>"
-                                         alt="<?php echo esc_attr($image_alt) ?>">
-                                </div>
+                                <div class="bottom-shape"></div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -668,24 +669,34 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
                             continue;
                         }
                         ?>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
                             <div class="plan-item margin-bottom-30 <?php echo esc_attr($details_item['active_package']); ?>">
-                                <?php
-                                if ($details_item['active_package'] === 'active'){
-                                    printf('<span class="plan-badge-top"> '.esc_html('POPULAR').'</span>');
-                                }
-                                ?>
-                                <div class="plan-content">
-                                    <div class="plan-header">
-                                        <div class="plan-badge-area">
-                                            <span class="plan-badge red"><?php echo esc_html($details_item['title']); ?></span>
-                                        </div>
-                                        <p class="description"><?php echo esc_html($details_item['description']); ?></p>
+                                <div class="plan-header-area">
+                                    <div class="plan-icon">
+                                        <img src="<?php echo esc_url($image_url) ?>"
+                                             alt="<?php echo esc_attr($image_alt) ?>">
                                     </div>
+                                    <div class="plan-header">
+                                        <?php
+                                        if ($details_item['active_package'] === 'active') {
+                                            printf('<span class="plan-badge"> ' . esc_html('POPULAR') . '</span>');
+                                        }
+                                        ?>
+                                        <h3 class="title"><?php echo esc_html($details_item['title']); ?></h3>
+                                        <p><?php echo esc_html($details_item['description']); ?></p>
+                                    </div>
+                                </div>
+                                <div class="plan-body">
                                     <div class="plan-price-area">
-                                        <h2 class="price-title">
-                                            <sup><?php echo esc_html($details_item['sign']); ?></sup><?php echo esc_html($details_item['price']); ?>
-                                            <sub><?php echo esc_html($details_item['month']); ?></sub></h2>
+                                        <h3 class="price-title"><?php echo esc_html($details_item['sign']);
+                                            echo esc_html($details_item['price']); ?>
+                                            <span><?php echo esc_html($details_item['month']); ?></span></h3>
+                                        <div class="plan-btn">
+                                            <a href="<?php echo esc_url($details_item['btn_link']['url']); ?>"
+                                               class="btn--base button-animation"><i
+                                                        class="las la-plus"></i> <?php echo esc_html($details_item['btn_text']); ?>
+                                            </a>
+                                        </div>
                                     </div>
                                     <ul class="plan-list">
                                         <?php
@@ -696,16 +707,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
                                         ?>
                                     </ul>
                                 </div>
-                                <div class="plan-footer">
-                                    <a href="<?php echo esc_url($details_item['btn_link']['url']); ?>">
-                                        <h3 class="title"><?php echo esc_html($details_item['btn_text']); ?></h3>
-                                        <div class="plan-btn"><i class="fas fa-angle-right"></i></div>
-                                    </a>
-                                </div>
-                                <div class="plan-overlay">
-                                    <img src="<?php echo esc_url($image_url) ?>"
-                                         alt="<?php echo esc_attr($image_alt) ?>">
-                                </div>
+                                <div class="bottom-shape"></div>
                             </div>
                         </div>
                     <?php endforeach; ?>

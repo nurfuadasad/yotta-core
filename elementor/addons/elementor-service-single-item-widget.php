@@ -584,23 +584,23 @@ class Yotta_Service_Single_Item_Widget extends Widget_Base
                 <?php
                 while ($post_data->have_posts()): $post_data->the_post();
                     $post_id = get_the_ID();
-                    $image_id = get_post_thumbnail_id($post_id) ? get_post_thumbnail_id($post_id) : false;
-                    $image_url_val = $image_id ? wp_get_attachment_image_src($image_id, 'full', false) : '';
-                    $image_url = is_array($image_url_val) && !empty($image_url_val) ? $image_url_val[0] : '';
-                    $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
                     $service_single_meta_data = get_post_meta(get_the_ID(), 'yotta_service_options',true);
+                    $service_image_selector = $service_single_meta_data['service_selector'];
+                    $service_image = $service_single_meta_data['service_image'];
+                    $service_image_id = $service_image['id'];
                     $service_single_repeater = isset($service_single_meta_data['service_repeater']) && !empty($service_single_meta_data['service_repeater']) ? $service_single_meta_data['service_repeater'] : '';
                     ?>
                     <div class="col-lg-<?php echo esc_attr($settings['column']); ?> col-md-6">
                         <div class="hosting-item">
                             <div class="hosting-icon">
-                                <?php 
-                                    if(isset($service_single_meta_data['service_icon'])){
-                                        echo "<span class=".esc_attr($service_single_meta_data['service_icon'])."></span>";
-                                    }
+                                <?php
+                                if ($service_image_selector === 'service_icon' && isset($service_single_meta_data['service_icon'])){
+                                        echo "<i class=".esc_attr($service_single_meta_data['service_icon'])."></i>";
+                                }
+                                if ($service_image_selector === 'service_image' && !empty($service_image_id)){
+                                    printf('<img src="%1$s" alt="%2$s">' , esc_url( $service_image['url']), esc_attr( $service_image['alt']));
+                                }
                                 ?>
-                                <img src="<?php echo esc_url($service_single_meta_data['service_icon']); ?>"
-                                     alt="<?php echo esc_attr($image_alt); ?>">
                             </div>
                             <div class="hosting-content">
                                 <?php
