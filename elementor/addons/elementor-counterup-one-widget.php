@@ -338,16 +338,16 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             'selector' => "{{WRAPPER}} .statistics-item .counterup-icon span"
         ]);
 		$this->add_control(
-			'icon_border_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'icon_border_radius_hover',
+            [
+                'label' => esc_html__('Border Radius', 'yotta-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
 
@@ -397,7 +397,6 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                     <p><?php echo esc_html($title); ?></p>
                 </div>
             </div>
-        </div>
 
         <?php
     }
