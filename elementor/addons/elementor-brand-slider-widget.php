@@ -69,7 +69,19 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
     {
         return ['yotta_widgets'];
     }
-
+    /**
+     * Get widget categories.
+     *
+     * Retrieve the list of categories the Elementor widget belongs to.
+     *
+     * @return array Widget categories.
+     * @since 1.0.0
+     * @access public
+     *
+     */
+    public function get_script_depends() {
+        return [ 'swiper' ];
+    }
     /**
      * Register Elementor widget controls.
      *
@@ -156,6 +168,25 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
                 'default' => '4',
             ]
         );
+		$this->add_control(
+			'items_gap',
+			[
+				'label' => esc_html__( 'Item Gap', 'yotta-core' ),
+				'type' => Controls_Manager::SLIDER,
+				'description' => esc_html__('you can set items gap', 'yotta-core'),
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					]
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+			]
+		);
         $this->add_control(
             'loop',
             [
@@ -279,7 +310,6 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-
         $brand_items = $settings['brand_items'];
 
         $nav_radius = '';
@@ -295,8 +325,8 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
         //slider settings
         $slider_settings = [
             "loop" => esc_attr($settings['loop']),
-            "margin" => esc_attr($settings['margin_item']['size'] ?? 0),
             "items" => esc_attr($settings['items'] ?? 1),
+            "margin" => esc_attr($settings['items_gap']['size'] ?? 0),
             "center" => esc_attr($settings['center']),
             "autoplay" => esc_attr($settings['autoplay']),
             "autoplaytimeout" => esc_attr($settings['autoplaytimeout']['size'] ?? 0),
@@ -323,57 +353,6 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
                     <?php endforeach; ?>
                 </div>
             </div>
-
-
-
-
-            <!-- <div class="brand-slider-area">
-                    <div class="brand-slider">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="brand-item">
-                                    <img src="assets/images/brand/brand-1.png" alt="brand">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="brand-item">
-                                    <img src="assets/images/brand/brand-2.png" alt="brand">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="brand-item">
-                                    <img src="assets/images/brand/brand-3.png" alt="brand">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="brand-item">
-                                    <img src="assets/images/brand/brand-4.png" alt="brand">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <?php if (!empty($settings['nav'] || $settings['dots'])) : ?>
                 <div class="slick-carousel-controls <?php echo $navbar_top; ?>">
                     <div class="container"> 

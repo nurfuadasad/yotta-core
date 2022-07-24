@@ -340,6 +340,13 @@ if (!class_exists('Yotta_Core_Init')) {
                     'ver' => $plugin_version,
                     'in_footer' => true
                 ),
+                array(
+                    'handle' => 'swiper',
+                    'src' => YOTTA_CORE_JS . '/swiper.min.js',
+                    'deps' => array('jquery'),
+                    'ver' => $plugin_version,
+                    'in_footer' => true
+                ),
 				array(
 					'handle' => 'yotta-core-main-script',
 					'src' => YOTTA_CORE_JS . '/main.js',
@@ -434,6 +441,13 @@ if (!class_exists('Yotta_Core_Init')) {
 				array(
 					'handle' => 'yotta-core-lightcase',
 					'src' => YOTTA_CORE_ROOT_URL . '/js/lightcase.js',
+					'deps' => array('jquery'),
+					'ver' => $plugin_version,
+					'in_footer' => true
+				),
+				array(
+					'handle' => 'yotta-swiper',
+					'src' => YOTTA_CORE_ROOT_URL . '/js/swiper.min.js',
 					'deps' => array('jquery'),
 					'ver' => $plugin_version,
 					'in_footer' => true
