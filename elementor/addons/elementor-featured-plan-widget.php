@@ -330,6 +330,8 @@ class Yotta_Featured_plan_Widget extends Widget_Base
         <div class="hosting-area">
             <div class="hosting-item">
                 <div class="hosting-icon" style="text-align: <?php echo esc_attr( $settings['image_alignment'] ); ?>;">
+
+                
                     <img src="https://www.fillmurray.com/100/150" alt="icon">
                 </div>
                 <div class="hosting-content">

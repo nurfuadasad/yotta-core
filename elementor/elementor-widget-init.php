@@ -101,7 +101,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 				'service-single-item',
 //				'team-single-item',
 //				'team-single-item-two',
-				'testimonial-three',
+				'testimonial-one',
 //				'training-single-grid',
 //				'training-single-slider',
 //				'training-single-slider-two',

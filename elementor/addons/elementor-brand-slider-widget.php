@@ -173,7 +173,7 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
 			[
 				'label' => esc_html__( 'Item Gap', 'yotta-core' ),
 				'type' => Controls_Manager::SLIDER,
-				'description' => esc_html__('you can set items gap', 'yotta-core'),
+				'description' => esc_html__('you can set gap between items', 'yotta-core'),
 				'range' => [
 					'px' => [
 						'min' => 0,

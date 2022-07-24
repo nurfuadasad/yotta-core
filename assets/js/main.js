@@ -9,7 +9,7 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-brand-slider-widget.default', function ($scope) {
             activeBrandSlider($scope);
         });
-        // Brand Slider
+        // Gallery Slider
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-image-gallery-widget.default', function ($scope) {
             activeGallerySlider($scope);
         });
@@ -230,19 +230,17 @@
 
         wowSlickInit($selector, sliderSettings);
     }
-    /*----------------------------------
+/*----------------------------------
         Brand Slider Widget
-    --------------------------------*/
- // Brand slider
+--------------------------------*/
+
  function activeBrandSlider($scope) {
     var el = $scope.find('.brand-slider')
     var elSettings = el.data('settings');
 
-    // console.log(typeof(elSettings.items_gap));
     if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
         return;
     }
-    console.log(elSettings);
     var swiper = new Swiper('.brand-slider', {
         slidesPerView: elSettings.items,
         spaceBetween: parseInt(elSettings.margin),
@@ -274,9 +272,6 @@
 }
 
 
-
-
-    
     /*----------------------------------
     Gallery Slider Widget
     --------------------------------*/
@@ -398,20 +393,72 @@
 
 
     /*----------------------------
-    * Testimonial Slider
+    * Testimonial Slider - One
+    * --------------------------*/
+    var Testislider1 = function ($scope, $) {
+
+        $scope.find('.client-area').each(function () {
+            var settings = $(this).data('softim');
+
+            // Js Start
+            var swiper = new Swiper('.client-slider', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                loop: true,
+                pagination: {
+                    el: '.client-pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '">' + (index + 1) + '</span>';
+                    },
+                },
+                navigation: {
+                    nextEl: '.slider-next',
+                    prevEl: '.slider-prev',
+                },
+                autoplay: {
+                    speeds: 2000,
+                    delay: 4000,
+                },
+                speed: 1000,
+                breakpoints: {
+                    1199: {
+                        slidesPerView: 2,
+                    },
+                    991: {
+                        slidesPerView: 2,
+                    },
+                    767: {
+                        slidesPerView: 1,
+                    },
+                    575: {
+                        slidesPerView: 1,
+                    },
+                }
+            });
+
+            // Js End
+        });
+
+    };
+
+    /*----------------------------
+    * Testimonial Slider- one
     * --------------------------*/
     function activeTestimonialSliderOne($scope) {
-        var el = $scope.find('.testimonial-carousel');
+        var el = $scope.find('.yotta-testimonial-one');
         var elSettings = el.data('settings');
+      
+        console.log (elSettings);
         if ((el.children('div').length < 2) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
             return
         }
 
-        let $selector = '#' + el.attr('id');
-
+        let selector = '#' + el.attr('id');
         let sliderSettings = {
             infinite: elSettings.loop === 'yes',
             slidesToShow: elSettings.items,
+            centerPadding: '70px',
             slidesToScroll: 1,
             arrows: elSettings.nav === 'yes',
             dots: elSettings.dot === 'yes',
@@ -464,7 +511,7 @@
                 }
             ]
         }
-        wowSlickInit($selector, sliderSettings);
+        wowSlickInit(selector, sliderSettings);
 
     }
 
