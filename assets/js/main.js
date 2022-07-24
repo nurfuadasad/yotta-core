@@ -454,7 +454,7 @@
             return
         }
 
-        let selector = '#' + el.attr('id');
+        let $selector = '#' + el.attr('id');
         let sliderSettings = {
             infinite: elSettings.loop === 'yes',
             slidesToShow: elSettings.items,
@@ -511,7 +511,7 @@
                 }
             ]
         }
-        wowSlickInit(selector, sliderSettings);
+        wowSlickInit($selector, sliderSettings);
 
     }
 

@@ -621,10 +621,12 @@ Fight School has specialized.", 'yotta-core'),
                             <p><?php echo esc_html($item['description']); ?></p>
                         </div>
                         <div class="client-footer">
+                            <?php if($image_url): ?>
                             <div class="client-footer-user-thumb">
                                 <img src="<?php echo esc_url($image_url); ?>"
                                     alt="<?php echo esc_attr($image_alt); ?>">
                             </div>
+                            <?php endif; ?>
                             <div class="client-footer-user-content">
                                 <h6 class="title"><?php echo esc_html($item['name']); ?></h6>
                                 <?php
