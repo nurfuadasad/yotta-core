@@ -29,7 +29,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
      *
      * Retrieve Elementor widget by tag / keyword name.
      *
-     * @return string Tag name.
+     * @return string[] Tag name.
      * @since 1.0.0
      * @access public
      *

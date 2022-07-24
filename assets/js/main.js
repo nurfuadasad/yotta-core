@@ -22,6 +22,10 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-course-slider-one-widget.default', function($scope) {
             activePerformanceSliderOne($scope);
         });
+        // Case Counter up three activeBeCounterList
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-counterup-one-widget.default', function ($scope) {
+            activeBeCounterList($scope.find('.statistics-item'));
+        });
         // Header Slider Three
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-header-slider-two-widget.default', function($scope) {
             activeHeaderSliderOne($scope);
@@ -96,6 +100,24 @@
         });
 
     });
+
+
+    // counterup-three
+    function activeBeCounterList($scope) {
+        var $counter = $scope;
+        if ($counter.length) {
+            $counter.each(function () {
+                $(this).isInViewport(function (status) {
+                    if (status === "entered") {
+                        for (var i = 0; i < document.querySelectorAll(".odometer").length; i++) {
+                            var el = document.querySelectorAll('.odometer')[i];
+                            el.innerHTML = el.getAttribute("data-odometer-final");
+                        }
+                    }
+                });
+            });
+        }
+    }
 
     /**-----------------------------
      *  countdown
