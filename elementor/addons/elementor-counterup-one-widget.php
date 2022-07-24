@@ -29,7 +29,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
      *
      * Retrieve Elementor widget by tag / keyword name.
      *
-     * @return string Tag name.
+     * @return string[] Tag name.
      * @since 1.0.0
      * @access public
      *
@@ -376,16 +376,16 @@ class Yotta_Counterup_One_Widget extends Widget_Base
             'selector' => "{{WRAPPER}} .statistics-item:hover .counterup-icon"
         ]);
 		$this->add_control(
-			'icon_border_radius_hover',
-			[
-				'label' => esc_html__( 'Border Radius', 'yotta-core' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+            'icon_border_radius_hover',
+            [
+                'label' => esc_html__('Border Radius', 'yotta-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .statistics-item .counterup-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
         $this->end_controls_tab();
         $this->end_controls_tabs();
@@ -461,9 +461,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                     </div>
                     <p><?php echo esc_html($title); ?></p>
                 </div>
-                
-        </div>
-
+            </div>
         <?php
     }
 }

@@ -93,7 +93,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 				'post-title',
 //				'post-image',
 //				'post-price',
-//				'price-plan',
+				'price-plan',
 //				'request-form',
 //				'routine-calendar-single-item',
 //				'single-skill-item',

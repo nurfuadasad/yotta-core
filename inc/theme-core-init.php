@@ -320,6 +320,20 @@ if (!class_exists('Yotta_Core_Init')) {
 					'in_footer' => true
 				),
                 array(
+                    'handle' => 'viewport',
+                    'src' => YOTTA_CORE_JS . '/viewport.jquery.js',
+                    'deps' => array('jquery'),
+                    'ver' => $plugin_version,
+                    'in_footer' => true
+                ),
+                array(
+                    'handle' => 'odometer',
+                    'src' => YOTTA_CORE_JS . '/odometer.min.js',
+                    'deps' => array('jquery'),
+                    'ver' => $plugin_version,
+                    'in_footer' => true
+                ),
+                array(
                     'handle' => 'slick',
                     'src' => YOTTA_CORE_JS . '/slick.min.js',
                     'deps' => array('jquery'),
