@@ -33,7 +33,6 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 			//add icon to elementor new icons fileds
 			add_filter( 'elementor/icons_manager/native', array( $this, 'add_custom_icon_to_elementor_icons' ) );
 		}
-
 		/**
 	     * getInstance()
 	     * @since 1.0.0
@@ -58,7 +57,6 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 				]
 			);
 		}
-
 		/**
 		 * _widget_registered()
 		 * @since 1.0.0
@@ -72,12 +70,12 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 				'blockquote',
 				'blockquote-two',
 				'blog-slider-one',
-				// 'blog-slider-two',
+//				'blog-slider-two',
 				'button-one',
-				// 'call-to-action-item',
-				// 'choose-single-item-one',
-				// 'contact-info-list-one',
-				'countdown',
+//				'call-to-action-item',
+//				'choose-single-item-one',
+//				'contact-info-list-one',
+//				'countdown',
 				'counterup-one',
 //				'empty-div',
 //				'event-trainer',
@@ -92,7 +90,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 				'heading-title',
 //				'icon-box-one',
 				'live-video-popup',
-//				'post-title',
+				'post-title',
 //				'post-image',
 //				'post-price',
 				'price-plan',

@@ -318,6 +318,7 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
         );
         $this->end_controls_section();
 
+        // Style Tab
         $this->start_controls_section(
             'title_styling_settings_section',
             [
@@ -377,6 +378,44 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                 "{{WRAPPER}} .blog-post-meta p" => "color: {{VALUE}}"
             ]
         ]);
+
+        $this->add_control(
+			'width',
+			[
+				'label' => esc_html__( 'Thumbnail Bottom Gap', 'plugin-name' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .blog-item .blog-thumb' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+        $this->add_control(
+			'post_thumb_radius',
+			[
+				'label' => esc_html__( 'Thumbnail Border Radius', 'yotta-core' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .blog-item .blog-thumb img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
         $this->end_controls_tab();
 
         $this->start_controls_tab(
@@ -475,14 +514,20 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
         $this->add_group_control(Group_Control_Typography::get_type(), [
             'label' => esc_html__('Category Typography', 'yotta-core'),
             'name' => 'category_typography',
-            'description' => esc_html__('select category typography', 'yotta-core'),
-            'selector' => "{{WRAPPER}} .blog-post-meta .category"
+            'description' => esc_html__('Select Category Typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .blog-content .blog-post-meta .category"
         ]);
         $this->add_group_control(Group_Control_Typography::get_type(), [
             'label' => esc_html__('User Typography', 'yotta-core'),
             'name' => 'user_typography',
-            'description' => esc_html__('select user typography', 'yotta-core'),
-            'selector' => "{{WRAPPER}} .blog-post-meta .user"
+            'description' => esc_html__('Select User Typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .blog-content .blog-post-meta .user"
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'label' => esc_html__('Date Typography', 'yotta-core'),
+            'name' => 'date_typography',
+            'description' => esc_html__('Select Date Typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .blog-content .blog-post-meta .date"
         ]);
         $this->end_controls_section();
 
@@ -601,7 +646,7 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                     ?>
                     <div class="col-lg-<?php echo esc_attr($settings['column']); ?> col-md-6">
 
-                        <!-- blog html markup according to yotta template -->
+                        <!-- home blog html markup according to yotta template -->
                         <div class="blog-item margin-bottom-30">
                             <div class="blog-thumb">
                                 <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($img_alt); ?>">
@@ -619,7 +664,6 @@ class Yotta_Blog_Post_Slider_One_Widget extends Widget_Base
                                     } ?>
                             </div>
                         </div>
-
                     </div>
                 <?php
                 endwhile;

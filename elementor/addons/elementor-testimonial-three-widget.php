@@ -37,9 +37,18 @@ class Yotta_Testimonial_Three_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Testimonial: 03', 'yotta-core');
+        return esc_html__('Yotta: Testimonial 1', 'yotta-core');
     }
-
+    /**
+     * Get widget keyword.
+     *
+     * Retrieve Elementor widget by keyword.
+     *
+     * @return string Widget keywords.
+     * @since 1.0.0
+     * @access public
+     *
+     */
     public function get_keywords()
     {
         return ['Team', 'Member', 'Testimonial', "ThemeIM", 'Yotta'];
@@ -348,6 +357,19 @@ Fight School has specialized.", 'yotta-core'),
             'tab' => Controls_Manager::TAB_STYLE
         ]);
 
+        $this->start_controls_tabs(
+            'icon_style_tabs'
+        );
+        // Normal Tab
+        $this->start_controls_tab(
+            'icon_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
+            ]
+        );
+
+
+
         $this->add_group_control(Group_Control_Background::get_type(), [
             'label' => esc_html__('Background', 'yotta-core'),
             'name' => 'content_backaground',
@@ -474,12 +496,35 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Ratings Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .single-testimonial-item-03 .client-ratings .ratings i" => "color: {{VALUE}}"
+                "{{WRAPPER}} .single-testimonial-item-03 .client-ratings .ratings" => "color: {{VALUE}}"
             ]
         ]);
 
+        $this->end_controls_tab();
+
+
+
+        // Hover Tab
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'style_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'plugin-name' ),
+            ]
+        );
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'item_box_shadow',
+				'label' => esc_html__( 'Box Shadow', 'plugin-name' ),
+				'selector' => '{{WRAPPER}} .client-item::hover',
+			]
+		);
+        $this->end_controls_tabs(); // End of Tabs section
         $this->end_controls_section();
 
+        // Typography
         $this->start_controls_section('typography_section', [
             'label' => esc_html__('Typography Settings', 'yotta-core'),
             'tab' => Controls_Manager::TAB_STYLE
@@ -504,7 +549,11 @@ Fight School has specialized.", 'yotta-core'),
             'label' => esc_html__('Icon Typography', 'yotta-core'),
             "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-header .client-quote"
         ]);
-        $this->end_controls_section();
+
+ 
+
+
+        $this->end_controls_section(); 
     }
 
     /**
