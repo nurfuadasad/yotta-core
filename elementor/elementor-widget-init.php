@@ -71,6 +71,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 				'blockquote-two',
 				'blog-slider-one',
 //				'blog-slider-two',
+				'brand-slider',
 				'button-one',
 //				'call-to-action-item',
 //				'choose-single-item-one',
