@@ -357,6 +357,19 @@ Fight School has specialized.", 'yotta-core'),
             'tab' => Controls_Manager::TAB_STYLE
         ]);
 
+        $this->start_controls_tabs(
+            'icon_style_tabs'
+        );
+        // Normal Tab
+        $this->start_controls_tab(
+            'icon_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'plugin-name' ),
+            ]
+        );
+
+
+
         $this->add_group_control(Group_Control_Background::get_type(), [
             'label' => esc_html__('Background', 'yotta-core'),
             'name' => 'content_backaground',
@@ -487,27 +500,31 @@ Fight School has specialized.", 'yotta-core'),
             ]
         ]);
 
+        $this->end_controls_tab();
+
+
+
+        // Hover Tab
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'style_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'plugin-name' ),
+            ]
+        );
+
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'item_box_shadow',
 				'label' => esc_html__( 'Box Shadow', 'plugin-name' ),
-				'selector' => '{{WRAPPER}} .single-testimonial-item-03 ',
+				'selector' => '{{WRAPPER}} .client-item::hover',
 			]
 		);
-        $this->add_control(
-            'item_margin',
-            [
-                'label' => esc_html__('margin', 'yotta-core'),
-                'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%', 'em'],
-                'selectors' => [
-                    '{{WRAPPER}} .single-testimonial-item-03' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+        $this->end_controls_tabs(); // End of Tabs section
         $this->end_controls_section();
 
+        // Typography
         $this->start_controls_section('typography_section', [
             'label' => esc_html__('Typography Settings', 'yotta-core'),
             'tab' => Controls_Manager::TAB_STYLE
@@ -532,7 +549,11 @@ Fight School has specialized.", 'yotta-core'),
             'label' => esc_html__('Icon Typography', 'yotta-core'),
             "selector" => "{{WRAPPER}} .single-testimonial-item-03 .client-header .client-quote"
         ]);
-        $this->end_controls_section();
+
+ 
+
+
+        $this->end_controls_section(); 
     }
 
     /**
