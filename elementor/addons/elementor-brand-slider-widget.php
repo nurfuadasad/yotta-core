@@ -311,7 +311,7 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
         
         ?>
 
-        <div class="brand-slider-wrap yotta-rtl-slider">
+        <div class="brand-slider-wrap brand-slider-area yotta-rtl-slider">
             <div <?php if ( is_rtl() ) { ?> dir="rtl" <?php }; ?> class="brand-slider" id="brand-one-slider-<?php echo esc_attr($rand_numb); ?>" data-settings='<?php echo json_encode($slider_settings) ?>'>
                 <div class="swiper-wrapper">
                     <?php foreach ($brand_items as $item): ?>
@@ -323,6 +323,57 @@ class Yotta_Brand_Slider_Widget extends Widget_Base
                     <?php endforeach; ?>
                 </div>
             </div>
+
+
+
+
+            <!-- <div class="brand-slider-area">
+                    <div class="brand-slider">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="brand-item">
+                                    <img src="assets/images/brand/brand-1.png" alt="brand">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="brand-item">
+                                    <img src="assets/images/brand/brand-2.png" alt="brand">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="brand-item">
+                                    <img src="assets/images/brand/brand-3.png" alt="brand">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="brand-item">
+                                    <img src="assets/images/brand/brand-4.png" alt="brand">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <?php if (!empty($settings['nav'] || $settings['dots'])) : ?>
                 <div class="slick-carousel-controls <?php echo $navbar_top; ?>">
                     <div class="container"> 
