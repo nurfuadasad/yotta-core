@@ -461,6 +461,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                     </div>
                     <p><?php echo esc_html($title); ?></p>
                 </div>
+                
         </div>
 
         <?php
