@@ -199,7 +199,7 @@ class Yotta_Live_Video_Popup_Widget extends Widget_Base
                 <h3 class="inner-title"><?php echo esc_html($settings['title']) ?></h3>
                 <p><?php echo esc_html($settings['description']) ?></p>
             </div>
-            <div class="bottom-shape"></div>
+            <!-- <div class="bottom-shape"></div> -->
         </div>
 
         <?php
