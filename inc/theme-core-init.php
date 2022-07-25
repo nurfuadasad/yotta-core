@@ -98,6 +98,10 @@ if (!class_exists('Yotta_Core_Init')) {
                     'folder-name' => YOTTA_CORE_WP_WIDGETS
                 ),
                 array(
+                    'file-name' => 'theme-widget-nav',
+                    'folder-name' => YOTTA_CORE_WP_WIDGETS
+                ),
+                array(
                     'file-name' => 'theme-about-me-widget',
                     'folder-name' => YOTTA_CORE_WP_WIDGETS
                 ),

@@ -517,112 +517,24 @@ if (!class_exists('Yotta_Core_Helper_Functions')) {
         }
 
         /**
-         * Tutor rating
-         * @since 1.0.0
-         */
-        public function tutor_rating()
+         * Get list of nav menu
+         * @since 2.0.0
+         * */
+        public static function get_nav_menu_list($output = 'slug')
         {
-            ?>
-            <div class="tutor-loop-rating-wrap">
-                <?php
-                $course_rating = tutor_utils()->get_course_rating();
-                tutor_utils()->star_rating_generator($course_rating->rating_avg);
-                ?>
-                <span class="tutor-rating-count">
-                    <?php
-                    if ($course_rating->rating_avg > 0) {
-                        echo apply_filters('tutor_course_rating_average', $course_rating->rating_avg);
-                        echo '<i>(' . apply_filters('tutor_course_rating_count', $course_rating->rating_count) . ')</i>';
-                    }
-                    ?>
-				</span>
-            </div>
-            <?php
-        }
+            $return_val = [];
+            $all_menu_list = wp_get_nav_menus();
 
-        /**
-         * Tutor category
-         * @since 1.0.0
-         */
-        public function tutor_category()
-        {
-            ?>
-            <div class="tutor-course-lising-category">
-                <?php
-
-                $course_categories = get_tutor_course_categories();
-                if (!empty($course_categories) && is_array($course_categories) && count($course_categories)) {
-                    ?>
-                    <?php
-                    foreach ($course_categories as $course_category) {
-                        $category_name = $course_category->name;
-                        $category_link = get_term_link($course_category->term_id);
-                        echo "<a href='$category_link'>$category_name </a>";
-                    }
+            foreach ($all_menu_list as $menu) {
+                if ($output == 'slug') {
+                    $return_val[$menu->slug] = $menu->name;
+                } else {
+                    $return_val[$menu->term_id] = $menu->name;
                 }
-                ?>
-            </div>
-            <?php
-        }
-
-        /**
-         * Tutor price
-         * @since 1.0.0
-         */
-        public function tutor_price()
-        {
-            ?>
-            <div class="tutor-course-loop-price">
-                <?php
-                $course_id = get_the_ID();
-                $default_price = apply_filters('tutor-loop-default-price', __('Free', 'tutor'));
-                $price_html = '<div class="price"> ' . $default_price . '</div>';
-                if (tutor_utils()->is_course_purchasable()) {
-
-                    $product_id = tutor_utils()->get_course_product_id($course_id);
-                    $product = wc_get_product($product_id);
-
-                    if ($product) {
-                        $price_html = '<div class="price"> ' . $product->get_price_html() . ' </div>';
-                    }
-                }
-                echo $price_html;
-                ?>
-            </div>
-            <?php
-        }
-
-        /**
-         * Enroll button
-         * @since 1.0.0
-         */
-        public function tutor_enroll_btn()
-        {
-            $course_id = get_the_ID();
-            $enroll_btn = '<div  class="tutor-loop-cart-btn-wrap">' . apply_filters('tutor_course_restrict_new_entry', '<a href="' . get_the_permalink() . '">' . esc_html__('Get Enrolled', 'yotta-core') . '</a>') . '</div>';
-            $add_to_cart = '<div class="add-to-cart">' . $enroll_btn . '</div>';
-            $product_id = tutor_utils()->get_course_product_id($course_id);
-            $product = wc_get_product($product_id);
-            if (tutor_utils()->is_course_purchasable()) {
-                $enroll_btn = tutor_course_loop_add_to_cart(false);
-                if ($product) {
-                    $add_to_cart = '<div>' . apply_filters('tutor_course_restrict_new_entry', $enroll_btn) . '</div>';
-                }
-                echo $add_to_cart;
-            } else {
-                printf('<div class="btn-wrap"><a class="boxed-btn blank" href="%1$s">%2$s<i class="flaticon-right-arrow-2 ml-2"></i></a></div>', get_permalink(), esc_html('Enroll Now'));
             }
-        }
 
-        /**
-         * Is tutor active
-         * @since 1.0.0
-         */
-        public function is_tutor_active()
-        {
-            return defined('TUTOR_VERSION');
+            return $return_val;
         }
-
         /**
          * Is woocommerce active
          * @since 1.0.0
