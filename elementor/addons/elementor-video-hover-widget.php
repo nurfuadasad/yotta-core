@@ -145,8 +145,25 @@ class Video_Hover extends Widget_Base
                 ]
             ]
         );
-
+        $this->add_control(
+            'title',
+            [
+                'label' => esc_html__('Title', 'yotta-core'),
+                'type' => Controls_Manager::TEXTAREA,
+                'label_block' => true,
+                'description' => esc_html__('enter title.', 'yotta-core'),
+                'default' => esc_html__('Go Live in a Minutes', 'yotta-core')
+            ]
+        );
+        $this->add_control('description',
+            [
+                'label' => esc_html__('Description', 'yotta-core'),
+                'type' => Controls_Manager::TEXTAREA,
+                'description' => esc_html__('enter description', 'yotta-core'),
+                'default' => esc_html__('We make it simple to launch in the cloud and hosting our best pricing and team accounts.', 'yotta-core')
+            ]);
         $this->end_controls_section();
+   
 
         $this->start_controls_section(
 
@@ -161,7 +178,25 @@ class Video_Hover extends Widget_Base
             ]
 
         );
-
+        $this->add_control('title_colors', [
+            'label' => esc_html__('Title Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .about-video-content .inner-title" => "color: {{VALUE}}"
+            ]
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'label' => esc_html__('Title Typography', 'yotta-core'),
+            'name' => 'title_typographys',
+            'description' => esc_html__('select title typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .about-video-content .inner-title"
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'label' => esc_html__('Title Typography', 'yotta-core'),
+            'name' => 'desc_typographys',
+            'description' => esc_html__('select title typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .about-video-content .inner-description"
+        ]);
 
         $this->add_control('shape_bg_color', [
 
@@ -363,14 +398,28 @@ class Video_Hover extends Widget_Base
         $settings = $this->get_settings_for_display();
 
         ?>
-
-        <div class="hover">
-            <a <?php echo yotta_core()->render_elementor_link_attributes($settings['link']) ?> class="video-play-btn-02 mfp-iframe"><?php echo yotta_core()->render_elementor_icons($settings['icon']) ?></a>
+        
+        <div class="about-video-area">
+            <div class="about-video">
+                <div class="video-main">
+                    <a <?php echo yotta_core()->render_elementor_link_attributes($settings['link']) ?> class="video-play-btn-02 mfp-iframe"><?php echo yotta_core()->render_elementor_icons($settings['icon']) ?></a>
+                </div>
+            </div>
+            <div class="about-video-content">
+                <h3 class="inner-title"><?php echo esc_html($settings['title']) ?></h3>
+                <p  class="inner-description"><?php echo esc_html($settings['description']) ?></p>
+            </div>
+            <!-- <div class="bottom-shape"></div> -->
         </div>
 
         <?php
 
     }
+
+
+
+
+    
 
 }
 
