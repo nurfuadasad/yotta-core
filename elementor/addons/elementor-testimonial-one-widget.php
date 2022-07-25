@@ -598,6 +598,14 @@ Fight School has specialized.", 'yotta-core'),
                 <div class="swiper-wrapper yotta_testimonial_one" id="yotta-testimonialSlider-One-<?php echo esc_attr($rand_numb); ?>"
                      data-settings='<?php echo json_encode($testimonial_settings); ?>'>
 
+                     <?php
+                    foreach ($all_testimonial_items as $item):
+                        $image_id = $item['image']['id'] ?? '';
+                        $image_url = !empty($image_id) ? wp_get_attachment_image_src($image_id, 'full', false)[0] : '';
+                        $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+                        ?>
+
+
                     <div class="swiper-slide">
                         <div class="client-item">
                             <div class="client-header">
@@ -630,7 +638,7 @@ Fight School has specialized.", 'yotta-core'),
                             </div>
                         </div>
                     </div>
- 
+                    <?php endforeach; ?>
                 </div>
 
                 <!-- If we need pagination -->
