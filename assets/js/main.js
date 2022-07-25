@@ -398,17 +398,17 @@ function activeTestimonialSliderOne($scope) {
 
       var el = $scope.find('.yotta_testimonial_one');
       var elSettings = el.data('settings');
-      console.log(elSettings);
+      console.log(elSettings.loop );
   
-    //   if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
-    //       return;
-    //   }
+      if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
+          return;
+      }
       var swiper = new Swiper('.yotta-testimonialSlider-One', {
-          slidesPerView: 2, //elSettings.items,
-          spaceBetween: 30, //parseInt(elSettings.margin),
-          loop: true, //elSettings.loop === 'yes',
-          centeredSlides: false, // elSettings.center === 'yes',
-          autoplay: true, //elSettings.autoplay === 'yes',
+          slidesPerView: elSettings.items,
+          spaceBetween: parseInt(elSettings.margin),
+          loop: elSettings.loop === 'yes',
+          centeredSlides:  elSettings.center === 'yes',
+          autoplay: elSettings.autoplay === 'yes',
           navigation: {
               prevEl: '.prev-icon',
               nextEl: '.next-icon',
