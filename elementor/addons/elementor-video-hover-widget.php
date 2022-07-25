@@ -46,7 +46,7 @@ class Video_Hover extends Widget_Base
     public function get_title()
     {
 
-        return esc_html__('Video Popup Player', 'yotta-core');
+        return esc_html__('Yotta : Video Popup Player', 'yotta-core');
 
     }
 
@@ -54,7 +54,7 @@ class Video_Hover extends Widget_Base
     public function get_keywords()
     {
 
-        return ['Animation', 'Circle', 'Effect', "ThemeIM", 'Yotta'];
+        return ['Popup', 'player', 'Effect', "ThemeIM", 'Yotta'];
 
     }
 
@@ -225,6 +225,7 @@ class Video_Hover extends Widget_Base
         $this->add_control('icon_bg_color', [
             'label' => esc_html__('Icon Color', 'yotta-core'),
             'type' => Controls_Manager::COLOR,
+            'default'   => '#1958D8',
             'selectors' => [
                 '{{WRAPPER}} .video-play-btn-02' => "color:{{VALUE}}"
             ]

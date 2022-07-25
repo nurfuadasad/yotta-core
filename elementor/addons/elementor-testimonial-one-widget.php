@@ -151,17 +151,17 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
             ]);
         $repeater->add_control('designation_status',
             [
-                'label' => esc_html__('Designation Show/Hide', 'yotta-master'),
+                'label' => esc_html__('Designation Show/Hide', 'yotta-core'),
                 'type' => Controls_Manager::SWITCHER,
-                'description' => esc_html__('show/hide designation', 'yotta-master'),
+                'description' => esc_html__('show/hide designation', 'yotta-core'),
             ]);
         $repeater->add_control('designation',
             [
-                'label' => esc_html__('Designation', 'yotta-master'),
+                'label' => esc_html__('Designation', 'yotta-core'),
                 'type' => Controls_Manager::TEXT,
-                'description' => esc_html__('enter designation', 'yotta-master'),
+                'description' => esc_html__('enter designation', 'yotta-core'),
                 'condition' => ['designation_status' => 'yes'],
-                'default' => esc_html__('Marketing Manager', 'yotta-master')
+                'default' => esc_html__('Marketing Manager', 'yotta-core')
             ]);
         $repeater->add_control('ratings',
             [
@@ -173,6 +173,7 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
             [
                 'label' => esc_html__('Ratings', 'yotta-core'),
                 'type' => Controls_Manager::SELECT,
+                'description' => esc_html__('set ratings', 'yotta-core'),
                 'options' => [
                     '1' => esc_html__('1 star', 'yotta-core'),
                     '2' => esc_html__('2 star', 'yotta-core'),
@@ -180,7 +181,7 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
                     '4' => esc_html__('4 star', 'yotta-core'),
                     '5' => esc_html__('5 star', 'yotta-core'),
                 ],
-                'description' => esc_html__('set ratings', 'yotta-core'),
+                'default'   => '5',
                 'condition' => ['ratings' => 'yes']
             ]);
         $repeater->add_control('description',
@@ -581,73 +582,83 @@ Fight School has specialized.", 'yotta-core'),
             "dot" => esc_attr($settings['dots']),
             "navleft" => yotta_core()->render_elementor_icons($settings['nav_left_arrow']),
             "navright" => yotta_core()->render_elementor_icons($settings['nav_right_arrow'])
-
-        ]
+        ];
 
         ?>
-        <div class="testimonial-carousel-wrapper yotta-rtl-slider">
-            <div class="ts-outer-wrap">
-                <div class="yotta-testimonial-one"
-                     id="yotta-testimonial-one-<?php echo esc_attr($rand_numb); ?>"
-                     data-settings='<?php echo json_encode($testimonial_settings); ?>'
-                >
-                    <?php
-                    foreach ($all_testimonial_items as $item):
-                        $image_id = $item['image']['id'] ?? '';
-                        $image_url = !empty($image_id) ? wp_get_attachment_image_src($image_id, 'full', false)[0] : '';
-                        $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
-                        ?>
 
-                    <div class="client-item single-testimonial-item-01">
-                        <div class="client-header">
-                            <?php if (!empty($item['ratings'])): ?>
-                            <div class="client-ratings">
-                                <span class="ratings">
-                                    <?php
-                                        for ($i = 0; $i < $item['ratings_count']; $i++) {
-                                            print( '<i class="fa fa-star"></i>');
-                                        }
-                                    ?>
-                                </span>
+        
+
+
+
+        <!-- Slider Area Section -->
+        <div class="client-slider-area">
+            <!-- Slider main container -->
+            <div class="swiper client-slider yotta-testimonialSlider-One">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper yotta_testimonial_one" id="yotta-testimonialSlider-One-<?php echo esc_attr($rand_numb); ?>"
+                     data-settings='<?php echo json_encode($testimonial_settings); ?>'>
+
+                    <div class="swiper-slide">
+                        <div class="client-item">
+                            <div class="client-header">
+                                <div class="client-ratings">
+                                    <span class="ratings">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                </div>
+                                <div class="client-quote">
+                                    <img src="assets/images/client/quote.png" alt="quote">
+                                </div>
                             </div>
-                            <?php endif; ?>
-                            <div class="client-quote">
-                            <?php
-                                Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
-                            ?>
+                            <div class="client-content">
+                                <p>A testimonial is effectively a 
+                                    review or recommendation from 
+                                    a client, letting other people 
+                                    know how your products.</p>
                             </div>
-                        </div>
-                        <div class="client-content">
-                            <p><?php echo esc_html($item['description']); ?></p>
-                        </div>
-                        <div class="client-footer">
-                            <?php if($image_url): ?>
-                            <div class="client-footer-user-thumb">
-                                <img src="<?php echo esc_url($image_url); ?>"
-                                    alt="<?php echo esc_attr($image_alt); ?>">
-                            </div>
-                            <?php endif; ?>
-                            <div class="client-footer-user-content">
-                                <h6 class="title"><?php echo esc_html($item['name']); ?></h6>
-                                <?php
-                                    if (!empty($item['designation_status'])) {
-                                        printf('<span class="designation">%1$s</span>', esc_html($item['designation']));
-                                    }
-                                ?>
+                            <div class="client-footer">
+                                <div class="client-footer-user-thumb">
+                                    <img src="assets/images/client/client-2.png" alt="client">
+                                </div>
+                                <div class="client-footer-user-content">
+                                    <h6 class="title">Manisha Kair</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <?php endforeach; ?>
+ 
                 </div>
+
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <!-- <div class="swiper-scrollbar"></div> -->
             </div>
-            <div class="slick-carousel-controls">
-                <?php if (!empty($settings['nav'])) : ?>
-                    <div class="slider-nav <?php echo $settings['nav_position'] ?>"></div>
-                <?php endif; ?>
-                <div class="slider-dots"></div>
-            </div>
-            
+
+
+
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
         <?php
     }
 }

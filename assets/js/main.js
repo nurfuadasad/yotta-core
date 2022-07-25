@@ -34,29 +34,29 @@
             activeServiceGridSliderOne($scope);
         });
         // Testimonial Slider one
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-one-widget.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-one-widget.default',  function ($scope) {
             activeTestimonialSliderOne($scope);
         });
-        // Testimonial Slider two
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-two-widget.default', function ($scope) {
-            activeTestimonialSliderOne($scope);
-        });
-        // Testimonial Slider three
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-three-widget.default', function ($scope) {
-            activeTestimonialSliderOne($scope);
-        });
-        // Packages Slider one
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-widget.default', function ($scope) {
-            activeTestimonialSliderOne($scope);
-        });
-        // Packages Slider two
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-two-widget.default', function ($scope) {
-            activeTestimonialSliderOne($scope);
-        });
-        // Packages Slider one
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-training-single-slider-widget.default', function ($scope) {
-            activeTestimonialSliderOne($scope);
-        });
+        // // Testimonial Slider two
+        // elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-two-widget.default', function ($scope) {
+        //     activeTestimonialSliderOne($scope);
+        // });
+        // // Testimonial Slider three
+        // elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-three-widget.default', function ($scope) {
+        //     activeTestimonialSliderOne($scope);
+        // });
+        // // Packages Slider one
+        // elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-widget.default', function ($scope) {
+        //     activeTestimonialSliderOne($scope);
+        // });
+        // // Packages Slider two
+        // elementorFrontend.hooks.addAction('frontend/element_ready/yotta-packages-single-slider-two-widget.default', function ($scope) {
+        //     activeTestimonialSliderOne($scope);
+        // });
+        // // Packages Slider one
+        // elementorFrontend.hooks.addAction('frontend/element_ready/yotta-training-single-slider-widget.default', function ($scope) {
+        //     activeTestimonialSliderOne($scope);
+        // });
         // Team Slider
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-team-member-one-widget.default', function ($scope) {
             activeTeamMemberSliderOne($scope);
@@ -391,129 +391,130 @@
 
     }
 
+/*----------------------------
+* Testimonial Slider - One
+* --------------------------*/
+function activeTestimonialSliderOne($scope) {
 
-    /*----------------------------
-    * Testimonial Slider - One
-    * --------------------------*/
-    var Testislider1 = function ($scope, $) {
+      var el = $scope.find('.yotta_testimonial_one');
+      var elSettings = el.data('settings');
+      console.log(elSettings);
+  
+    //   if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
+    //       return;
+    //   }
+      var swiper = new Swiper('.yotta-testimonialSlider-One', {
+          slidesPerView: 2, //elSettings.items,
+          spaceBetween: 30, //parseInt(elSettings.margin),
+          loop: true, //elSettings.loop === 'yes',
+          centeredSlides: false, // elSettings.center === 'yes',
+          autoplay: true, //elSettings.autoplay === 'yes',
+          navigation: {
+              prevEl: '.prev-icon',
+              nextEl: '.next-icon',
+          },
+          pagination: {
+              el: '.custom-pagination',
+          },
+          breakpoints: {
+              991: {
+                  slidesPerView: 3,
+              },
+              767: {
+                  slidesPerView: 2,
+              },
+              575: {
+                  slidesPerView: 1,
+              },
+              420: {
+                  slidesPerView: 1,
+              },
+          }
+      });
 
-        $scope.find('.client-area').each(function () {
-            var settings = $(this).data('softim');
 
-            // Js Start
-            var swiper = new Swiper('.client-slider', {
-                slidesPerView: 3,
-                spaceBetween: 30,
-                loop: true,
-                pagination: {
-                    el: '.client-pagination',
-                    clickable: true,
-                    renderBullet: function (index, className) {
-                        return '<span class="' + className + '">' + (index + 1) + '</span>';
-                    },
-                },
-                navigation: {
-                    nextEl: '.slider-next',
-                    prevEl: '.slider-prev',
-                },
-                autoplay: {
-                    speeds: 2000,
-                    delay: 4000,
-                },
-                speed: 1000,
-                breakpoints: {
-                    1199: {
-                        slidesPerView: 2,
-                    },
-                    991: {
-                        slidesPerView: 2,
-                    },
-                    767: {
-                        slidesPerView: 1,
-                    },
-                    575: {
-                        slidesPerView: 1,
-                    },
-                }
-            });
 
-            // Js End
-        });
 
-    };
+
+
+
+
+
+
+}
+
 
     /*----------------------------
     * Testimonial Slider- one
     * --------------------------*/
-    function activeTestimonialSliderOne($scope) {
-        var el = $scope.find('.yotta-testimonial-one');
-        var elSettings = el.data('settings');
-      
-        console.log (elSettings);
-        if ((el.children('div').length < 2) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
-            return
-        }
+    // function activeTestimonialSlider($scope) {
+    //     var el = $scope.find('.yotta-testimonial-one');
+    //     var elSettings = el.data('settings');
+    
+    //     if ((el.children('div').length < 2) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
+    //         return
+    //     }
 
-        let $selector = '#' + el.attr('id');
-        let sliderSettings = {
-            infinite: elSettings.loop === 'yes',
-            slidesToShow: elSettings.items,
-            centerPadding: '70px',
-            slidesToScroll: 1,
-            arrows: elSettings.nav === 'yes',
-            dots: elSettings.dot === 'yes',
-            autoplaySpeed: elSettings.autoplaytimeout,
-            autoplay: elSettings.autoplay === 'yes',
-            centerMode: elSettings.center === 'yes',
-            vertical: elSettings.vertical === 'yes',
-            appendArrows: $scope.find('.slick-carousel-controls .slider-nav'),
-            appendDots: $scope.find('.slick-carousel-controls .slider-dots'),
-            prevArrow: '<div class="prev-arrow">' + elSettings.navleft + '</div>',
-            nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
-            centerPadding: elSettings.centerpadding + 'px',
-            cssEase: 'linear',
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
-                    }
-                },
-                {
-                    breakpoint: 800,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
+    //     let $selector = '#' + el.attr('id');
+    //     let sliderSettings = {
+    //         infinite: elSettings.loop === 'yes',
+    //         slidesToShow: elSettings.items,
+    //         centerPadding: '70px',
+    //         slidesToScroll: 1,
+    //         arrows: elSettings.nav === 'yes',
+    //         dots: elSettings.dot === 'yes',
+    //         autoplaySpeed: elSettings.autoplaytimeout,
+    //         autoplay: elSettings.autoplay === 'yes',
+    //         centerMode: elSettings.center === 'yes',
+    //         vertical: elSettings.vertical === 'yes',
+    //         appendArrows: $scope.find('.slick-carousel-controls .slider-nav'),
+    //         appendDots: $scope.find('.slick-carousel-controls .slider-dots'),
+    //         prevArrow: '<div class="prev-arrow">' + elSettings.navleft + '</div>',
+    //         nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
+    //         centerPadding: elSettings.centerpadding + 'px',
+    //         cssEase: 'linear',
+    //         responsive: [
+    //             {
+    //                 breakpoint: 1024,
+    //                 settings: {
+    //                     slidesToShow: 3,
+    //                     slidesToScroll: 1,
+    //                     centerPadding: 0,
+    //                 }
+    //             },
+    //             {
+    //                 breakpoint: 800,
+    //                 settings: {
+    //                     slidesToShow: 2,
+    //                     slidesToScroll: 1,
+    //                     centerPadding: 0,
 
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
-                        arrows: false
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
-                        arrows: false
+    //                 }
+    //             },
+    //             {
+    //                 breakpoint: 600,
+    //                 settings: {
+    //                     slidesToShow: 1,
+    //                     slidesToScroll: 1,
+    //                     centerPadding: 0,
+    //                     arrows: false
+    //                 }
+    //             },
+    //             {
+    //                 breakpoint: 480,
+    //                 settings: {
+    //                     slidesToShow: 1,
+    //                     slidesToScroll: 1,
+    //                     centerPadding: 0,
+    //                     arrows: false
 
-                    }
-                }
-            ]
-        }
-        wowSlickInit($selector, sliderSettings);
+    //                 }
+    //             }
+    //         ]
+    //     }
+    //     wowSlickInit($selector, sliderSettings);
 
-    }
+    // }
 
     /*----------------------------
     * Blog Post Grid Slider
