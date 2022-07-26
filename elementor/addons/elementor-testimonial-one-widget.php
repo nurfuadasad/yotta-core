@@ -106,6 +106,18 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
         $this->add_control('content_devider', [
             'type' => Controls_Manager::DIVIDER
         ]);
+        $this->add_control('testimonial_dir',
+        [
+            'label' => esc_html__('Direction', 'yotta-core'),
+            'type' => Controls_Manager::SELECT,
+            'description' => esc_html__('Set Testimonial Type', 'yotta-core'),
+            'options' => [
+                'horizontal' => esc_html__('Horizontal', 'yotta-core'),
+                'vertical' => esc_html__('Vertical', 'yotta-core'),
+
+            ],
+            'default'   => 'horizontal',
+        ]);
         $repeater = new Repeater();
         $repeater->add_control('image_status',
             [
@@ -594,6 +606,7 @@ Fight School has specialized.", 'yotta-core'),
 
         //slider settings
         $testimonial_settings = [
+            "direction" => esc_attr($settings['testimonial_dir'] ?? 'horizontal'),
             "loop" => esc_attr($settings['loop']),
             "items" => esc_attr($settings['items'] ?? 3),
             "itemgap" => esc_attr($settings['items_gap']['size'] ?? 0),

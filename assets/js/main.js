@@ -398,7 +398,7 @@ function activeTestimonialSliderOne($scope) {
 
       var el = $scope.find('.yottaTestimonialOne');
       var elSettings = el.data('settings');
-      console.log(elSettings);
+      console.log(elSettings.direction);
   
       if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
           return;
@@ -412,7 +412,7 @@ function activeTestimonialSliderOne($scope) {
             delay: elSettings.autoplaytimeout,
           },
           pauseOnMouseEnter: true,
-          //direction: 'vertical',
+          direction: elSettings.direction,
           navigation: {
               prevEl:  'prev-icon',
               nextEl:  'next-icon', 
