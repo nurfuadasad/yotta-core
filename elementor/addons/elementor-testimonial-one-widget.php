@@ -277,7 +277,7 @@ Fight School has specialized.", 'yotta-core'),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
-                        'min' => 0,
+                        'min' => 1000,
                         'max' => 10000,
                         'step' => 2,
                     ]
