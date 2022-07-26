@@ -109,32 +109,6 @@ class Yotta_Accordion_One extends Widget_Base
             ]
         );
         $repeater->add_control(
-            'content_title', [
-                'label' => esc_html__('Content Title', 'yotta-core'),
-                'type' => Controls_Manager::TEXT,
-                'description' => esc_html__('enter title.', 'yotta-core'),
-                'default' => esc_html__('great for:', 'yotta-core')
-            ]
-        );
-        $repeater->add_control(
-            'image', [
-                'label' => esc_html__('Image', 'yotta-core'),
-                'type' => Controls_Manager::GALLERY,
-                'show_label' => false,
-                'condition' => ['accordion_style' => 'with-image']
-            ]
-        );
-        $repeater->add_control(
-            'accordion-list-item',
-            [
-                'default' => esc_html__('Specialized bilingual guide', 'yotta-core'),
-                'label' => esc_html__('Accordion List', 'yotta-core'),
-                'type' => Controls_Manager::TEXTAREA,
-                'condition' => ['accordion_style' => 'with-image'],
-                'description' => esc_html__('Press Enter For New Item', 'yotta-core')
-            ]
-        );
-        $repeater->add_control(
             'description', [
                 'label' => esc_html__('Description', 'yotta-core'),
                 'type' => Controls_Manager::TEXTAREA,
@@ -334,36 +308,6 @@ class Yotta_Accordion_One extends Widget_Base
                                     class="right-icon"></span></h3>
                         <div class="faq-content">
                             <?php echo esc_html($item['description']); ?>
-                            <div class="faq-list-area">
-                                <h4 class="title"><?php echo esc_html($item['content_title']); ?></h4>
-                                <?php
-                                $all_list_items = strlen($item['accordion-list-item']) > 1 ? explode("\n", $item['accordion-list-item']) : [];
-                                if (!empty($all_list_items)):
-                                    ?>
-                                    <ul class="faq-list">
-                                        <?php
-                                        foreach ($all_list_items as $nested_item) {
-                                            printf('<li>%s</li>', $nested_item);
-                                        }
-                                        ?>
-                                    </ul>
-                                <?php endif; ?>
-                            </div>
-                            <div class="faq-inner-thumb-area">
-                                <div class="row justify-content-center mb-30-none">
-                                    <?php
-                                    $all_image = $item['image'];
-                                    foreach ($all_image as $image):
-                                        ?>
-                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-30">
-                                            <div class="faq-inner-thumb">
-                                                <img src="<?php echo esc_url($image['url']); ?>"
-                                                     alt="<?php echo esc_attr('faq-image'); ?>">
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
