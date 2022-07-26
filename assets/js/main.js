@@ -405,11 +405,10 @@ function activeTestimonialSliderOne($scope) {
       }
       var swiper = new Swiper('.yottaTestimonialOne', {
           slidesPerView: elSettings.items,
-          spaceBetween: elSettings.items_gap,
+          spaceBetween: parseInt(elSettings.itemgap),
           loop: elSettings.loop == 'yes',
           centeredSlides: elSettings.center === 'yes',
-          autoplay: elSettings.autoplay === 'yes',
-          autoplay: {
+          autoplay: elSettings.autoplay === 'yes' && {
             delay: elSettings.autoplaytimeout,
           },
           //direction: 'vertical',

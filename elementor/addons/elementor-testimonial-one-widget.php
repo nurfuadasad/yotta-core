@@ -233,11 +233,52 @@ Fight School has specialized.", 'yotta-core'),
             ]
         );
         $this->add_control(
+			'items_gap',
+			[
+				'label' => esc_html__( 'Item Gap', 'yotta-core' ),
+				'type' => Controls_Manager::SLIDER,
+				'description' => esc_html__('you can set gap between items', 'yotta-core'),
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 500,
+						'step' => 1,
+					]
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 0,
+				],
+			]
+		);
+        $this->add_control(
             'autoplay',
             [
                 'label' => esc_html__('Autoplay', 'yotta-core'),
                 'type' => Controls_Manager::SWITCHER,
                 'description' => esc_html__('you can set yes/no to enable/disable', 'yotta-core'),
+            ]
+        );
+        $this->add_control(
+            'autoplaytimeout',
+            [
+                'label' => esc_html__('Autoplay Timeout', 'yotta-core'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 10000,
+                        'step' => 2,
+                    ]
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 5000,
+                ],
+                'size_units' => ['px'],
+                'condition' => array(
+                    'autoplay' => 'yes'
+                )
             ]
         );
         $this->add_control(
@@ -328,28 +369,7 @@ Fight School has specialized.", 'yotta-core'),
                 )
             ]
         );
-        $this->add_control(
-            'autoplaytimeout',
-            [
-                'label' => esc_html__('Autoplay Timeout', 'yotta-core'),
-                'type' => Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 10000,
-                        'step' => 2,
-                    ]
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 5000,
-                ],
-                'size_units' => ['px'],
-                'condition' => array(
-                    'autoplay' => 'yes'
-                )
-            ]
-        );
+
         $this->end_controls_section();
 
         // Style Tab
@@ -574,6 +594,7 @@ Fight School has specialized.", 'yotta-core'),
         $testimonial_settings = [
             "loop" => esc_attr($settings['loop']),
             "items" => esc_attr($settings['items'] ?? 3),
+            "itemgap" => esc_attr($settings['items_gap']['size'] ?? 0),
             "center" => esc_attr($settings['center']),
             "autoplay" => esc_attr($settings['autoplay']),
             "autoplaytimeout" => esc_attr($settings['autoplaytimeout']['size'] ?? 0),
