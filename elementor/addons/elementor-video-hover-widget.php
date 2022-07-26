@@ -26,7 +26,7 @@ class Video_Hover extends Widget_Base
     public function get_name()
     {
 
-        return 'yotta-video-hover-widget';
+        return 'yotta-video-hover-popup-widget';
 
     }
 
@@ -46,7 +46,7 @@ class Video_Hover extends Widget_Base
     public function get_title()
     {
 
-        return esc_html__('Video Player', 'yotta-core');
+        return esc_html__('Yotta : Video Popup Player', 'yotta-core');
 
     }
 
@@ -54,7 +54,7 @@ class Video_Hover extends Widget_Base
     public function get_keywords()
     {
 
-        return ['Animation', 'Circle', 'Effect', "ThemeIM", 'Yotta'];
+        return ['Popup', 'player', 'Effect', "ThemeIM", 'Yotta'];
 
     }
 
@@ -185,77 +185,68 @@ class Video_Hover extends Widget_Base
                 "{{WRAPPER}} .about-video-content .inner-title" => "color: {{VALUE}}"
             ]
         ]);
-        $this->add_group_control(Group_Control_Typography::get_type(), [
-            'label' => esc_html__('Title Typography', 'yotta-core'),
-            'name' => 'title_typographys',
-            'description' => esc_html__('select title typography', 'yotta-core'),
-            'selector' => "{{WRAPPER}} .about-video-content .inner-title"
+        $this->add_control('desc_colors', [
+            'label' => esc_html__('Title Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'selectors' => [
+                "{{WRAPPER}} .about-video-content .inner-description" => "color: {{VALUE}}"
+            ]
         ]);
-        $this->add_group_control(Group_Control_Typography::get_type(), [
-            'label' => esc_html__('Title Typography', 'yotta-core'),
-            'name' => 'desc_typographys',
-            'description' => esc_html__('select title typography', 'yotta-core'),
-            'selector' => "{{WRAPPER}} .about-video-content .inner-description"
-        ]);
-
         $this->add_control('shape_bg_color', [
-
             'label' => esc_html__('Circle Color', 'yotta-core'),
-
             'type' => Controls_Manager::COLOR,
-
+            'default'   => '#D0DDF7',
             'selectors' => [
-
                 '{{WRAPPER}} .video-play-btn-02' => "background-color:{{VALUE}}"
-
             ]
-
         ]);
-
-        $this->add_control('icon_bg_color', [
-
-            'label' => esc_html__('Icon Color', 'yotta-core'),
-
-            'type' => Controls_Manager::COLOR,
-
-            'selectors' => [
-
-                '{{WRAPPER}} .video-play-btn-02' => "color:{{VALUE}}"
-
-            ]
-
-        ]);
-
-        $this->add_control('border_bg_color', [
-
-            'label' => esc_html__('Icon Border Color', 'yotta-core'),
-
-            'type' => Controls_Manager::COLOR,
-
-            'selectors' => [
-
-                '{{WRAPPER}} .video-play-btn-02:before' => "border-color:{{VALUE}}"
-
-            ]
-
-        ]);
-
         $this->add_control(
-
-            'shape-radius',
-
+            'icon_size',
             [
-
-                'label' => esc_html__('Shape Radius', 'yotta-core'),
-
-                'type' => Controls_Manager::DIMENSIONS,
-
-                'size_units' => ['px', '%', 'em'],
-
+                'label' => esc_html__('Icon Size', 'yotta-core'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 12,
+                        'max' => 150,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'px' => 'px',
+                    'size' => 30,
+                ],
                 'selectors' => [
+                    '{{WRAPPER}} .video-play-btn-02' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
 
+        );
+        $this->add_control('icon_bg_color', [
+            'label' => esc_html__('Icon Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'default'   => '#1958D8',
+            'selectors' => [
+                '{{WRAPPER}} .video-play-btn-02' => "color:{{VALUE}}"
+            ]
+
+        ]);
+        $this->add_control('border_bdr_color', [
+            'label' => esc_html__('Icon Border Color', 'yotta-core'),
+            'type' => Controls_Manager::COLOR,
+            'default'   => 'rgb(25 89 219 / 13%)',
+            'selectors' => [
+                '{{WRAPPER}} .video-play-btn-02:before' => "border-color:{{VALUE}}"
+            ]
+        ]);
+        $this->add_control(
+            'shape-radius',
+            [
+                'label' => esc_html__('Shape Radius', 'yotta-core'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
                     '{{WRAPPER}} .video-play-btn-02' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-
                 ],
 
             ]
@@ -265,117 +256,82 @@ class Video_Hover extends Widget_Base
         $this->add_group_control(
 
             Group_Control_Border::get_type(),
-
             [
-
                 'name' => 'shape_border',
-
                 'label' => esc_html__('Shape Border', 'yotta-core'),
-
                 'selector' => '{{WRAPPER}} .video-play-btn-02:before',
-
             ]
-
         );
-
         $this->add_control(
-
             'shape_height',
-
             [
-
                 'label' => esc_html__('Shape Height', 'yotta-core'),
-
                 'type' => Controls_Manager::SLIDER,
-
                 'size_units' => ['px', '%'],
-
                 'range' => [
-
                     'px' => [
-
                         'min' => 0,
-
                         'max' => 5000,
-
                         'step' => 5,
-
                     ],
-
                     '%' => [
-
                         'min' => 0,
-
                         'max' => 100,
-
                     ],
-
                 ],
-
                 'default' => [
-
                     'px' => 'px',
-
                     'size' => 120,
-
                 ],
-
                 'selectors' => [
-
                     '{{WRAPPER}} .video-play-btn-02' => 'height: {{SIZE}}{{UNIT}};',
-
                 ],
-
             ]
 
         );
 
         $this->add_control(
-
             'shape_width',
-
             [
 
                 'label' => esc_html__('Shape Width', 'yotta-core'),
-
                 'type' => Controls_Manager::SLIDER,
-
                 'size_units' => ['px', '%'],
-
                 'range' => [
-
                     'px' => [
-
                         'min' => 0,
-
                         'max' => 5000,
-
                         'step' => 5,
-
                     ],
-
                     '%' => [
-
                         'min' => 0,
-
                         'max' => 100,
-
                     ],
-
                 ],
-
                 'default' => [
-
                     'px' => 'px',
-
                     'size' => 120,
-
                 ],
                 'selectors' => [
                     '{{WRAPPER}}  .video-play-btn-02' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'label' => esc_html__('Title Typography', 'yotta-core'),
+            'name' => 'title_typographys',
+            'description' => esc_html__('select title typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .about-video-content .inner-title"
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'label' => esc_html__('Description Typography', 'yotta-core'),
+            'name' => 'desc_typographys',
+            'description' => esc_html__('select title typography', 'yotta-core'),
+            'selector' => "{{WRAPPER}} .about-video-content .inner-description"
+        ]);
+
+
+
         $this->end_controls_section();
 
 
@@ -394,11 +350,9 @@ class Video_Hover extends Widget_Base
 
     protected function render()
     {
-
         $settings = $this->get_settings_for_display();
-
         ?>
-        
+
         <div class="about-video-area">
             <div class="about-video">
                 <div class="video-main">
@@ -409,11 +363,10 @@ class Video_Hover extends Widget_Base
                 <h3 class="inner-title"><?php echo esc_html($settings['title']) ?></h3>
                 <p  class="inner-description"><?php echo esc_html($settings['description']) ?></p>
             </div>
-            <!-- <div class="bottom-shape"></div> -->
+            <div class="bottom-shape"></div>
         </div>
 
         <?php
-
     }
 
 
