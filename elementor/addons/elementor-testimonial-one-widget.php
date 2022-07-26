@@ -215,7 +215,6 @@ Fight School has specialized..', 'yotta-core')
 Fight School has specialized.", 'yotta-core'),
                 ]
             ],
-
         ]);
         $this->end_controls_section();
 
@@ -381,7 +380,6 @@ Fight School has specialized.", 'yotta-core'),
                 )
             ]
         );
-
         $this->end_controls_section();
 
         // Style Tab
@@ -389,7 +387,6 @@ Fight School has specialized.", 'yotta-core'),
             'label' => esc_html__('Styling Settings', 'yotta-core'),
             'tab' => Controls_Manager::TAB_STYLE
         ]);
-
         $this->start_controls_tabs(
             'icon_style_tabs'
         );
@@ -400,9 +397,6 @@ Fight School has specialized.", 'yotta-core'),
                 'label' => esc_html__( 'Normal', 'plugin-name' ),
             ]
         );
-
-
-
         $this->add_group_control(Group_Control_Background::get_type(), [
             'label' => esc_html__('Background', 'yotta-core'),
             'name' => 'content_backaground',
@@ -510,7 +504,6 @@ Fight School has specialized.", 'yotta-core'),
                 "{{WRAPPER}} .client-item .client-footer-user-content .title" => "color: {{VALUE}}"
             ]
         ]);
-
         $this->add_control('description_color', [
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Description Color', 'yotta-core'),
@@ -532,7 +525,6 @@ Fight School has specialized.", 'yotta-core'),
                 "{{WRAPPER}} .client-item .client-ratings .ratings" => "color: {{VALUE}}"
             ]
         ]);
-
         $this->end_controls_tab();
 
 
@@ -545,7 +537,6 @@ Fight School has specialized.", 'yotta-core'),
                 'label' => esc_html__( 'Hover', 'plugin-name' ),
             ]
         );
-
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
@@ -582,10 +573,6 @@ Fight School has specialized.", 'yotta-core'),
             'label' => esc_html__('Icon Typography', 'yotta-core'),
             "selector" => "{{WRAPPER}} .client-item .client-header .client-quote"
         ]);
-
- 
-
-
         $this->end_controls_section(); 
     }
 
@@ -602,8 +589,6 @@ Fight School has specialized.", 'yotta-core'),
         $all_testimonial_items = $settings['testimonial_items'];
         $rand_numb = rand(333, 999999999);
 
-
-
         //slider settings
         $testimonial_settings = [
             "direction" => esc_attr($settings['testimonial_dir'] ?? 'horizontal'),
@@ -619,13 +604,11 @@ Fight School has specialized.", 'yotta-core'),
             "navleft" => yotta_core()->render_elementor_icons($settings['nav_left_arrow']),
             "navright" => yotta_core()->render_elementor_icons($settings['nav_right_arrow'])
         ];
-
         $navleft = yotta_core()->render_elementor_icons($settings['nav_left_arrow']);
         $navright = yotta_core()->render_elementor_icons($settings['nav_right_arrow']);
 
         ?>
 
-        
         <!-- Slider Area Section -->
         <div class="client-slider-area">
             <!-- Slider main container -->
@@ -668,24 +651,23 @@ Fight School has specialized.", 'yotta-core'),
                                     <p><?php echo esc_html($item['description']); ?></p>
                                 </div>
                                 <div class="client-footer">
-                                <?php if($image_url): ?>
-                                <div class="client-footer-user-thumb">
-                                    <img src="<?php echo esc_url($image_url); ?>"
-                                        alt="<?php echo esc_attr($image_alt); ?>">
-                                </div>
-                                <?php endif; ?>
+                                    <?php if($image_url): ?>
+                                    <div class="client-footer-user-thumb">
+                                        <img src="<?php echo esc_url($image_url); ?>"
+                                            alt="<?php echo esc_attr($image_alt); ?>">
+                                    </div>
+                                    <?php endif; ?>
                                     <div class="client-footer-user-content">
                                         <h6 class="title"><?php echo esc_html($item['client_name']); ?></h6>
                                         <?php
                                         if (!empty($item['designation_status'])) {
                                             printf('<span class="designation">%1$s</span>', esc_html($item['designation']));
-                                        }
-                                    ?>
+                                        } ?>
                                     </div>
 
-                                </div>
+                                </div> <!-- End Client Foorer -->
                             </div>
-                        </div>
+                        </div>  <!-- End Slider Item -->
                     <?php endforeach; ?>
                 </div>
 
