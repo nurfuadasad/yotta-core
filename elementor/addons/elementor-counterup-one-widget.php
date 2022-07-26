@@ -452,7 +452,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                 </div>
                 <div class="statistics-content">
                     <div class="odo-area">
-                        <h3 class="count-num odo-title odometer" data-odometer-final="<?php echo esc_html($number); ?>">0</h3>
+                        <h3 class="count-num odo-title odometer" data-odometer-final="<?php echo esc_html($number); ?>"><?php echo esc_html($number); ?></h3>
                         <h3 class="title">
                             <?php if (!empty($settings['sign'])) : ?>
                                 <?php echo esc_html($settings['sign']) ?>
