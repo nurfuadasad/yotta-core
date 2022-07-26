@@ -396,25 +396,31 @@
 * --------------------------*/
 function activeTestimonialSliderOne($scope) {
 
-      var el = $scope.find('.yotta_testimonial_one');
+      var el = $scope.find('.yottaTestimonialOne');
       var elSettings = el.data('settings');
-      console.log(elSettings.loop );
+      console.log(elSettings);
   
       if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
           return;
       }
-      var swiper = new Swiper('.yotta-testimonialSlider-One', {
+      var swiper = new Swiper('.yottaTestimonialOne', {
           slidesPerView: elSettings.items,
-          spaceBetween: parseInt(elSettings.margin),
-          loop: elSettings.loop === 'yes',
-          centeredSlides:  elSettings.center === 'yes',
+          spaceBetween: elSettings.items_gap,
+          loop: elSettings.loop == 'yes',
+          centeredSlides: elSettings.center === 'yes',
           autoplay: elSettings.autoplay === 'yes',
+          autoplay: {
+            delay: elSettings.autoplaytimeout,
+          },
+          //direction: 'vertical',
           navigation: {
-              prevEl: '.prev-icon',
-              nextEl: '.next-icon',
+              prevEl:  'prev-icon',
+              nextEl:  'next-icon', 
           },
           pagination: {
-              el: '.custom-pagination',
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true,
           },
           breakpoints: {
               991: {
@@ -431,14 +437,6 @@ function activeTestimonialSliderOne($scope) {
               },
           }
       });
-
-
-
-
-
-
-
-
 
 
 }

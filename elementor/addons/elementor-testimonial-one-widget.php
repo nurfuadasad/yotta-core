@@ -584,72 +584,85 @@ Fight School has specialized.", 'yotta-core'),
             "navright" => yotta_core()->render_elementor_icons($settings['nav_right_arrow'])
         ];
 
+        $navleft = yotta_core()->render_elementor_icons($settings['nav_left_arrow']);
+        $navright = yotta_core()->render_elementor_icons($settings['nav_right_arrow']);
+
         ?>
 
         
-
-
-
         <!-- Slider Area Section -->
         <div class="client-slider-area">
             <!-- Slider main container -->
-            <div class="swiper client-slider yotta-testimonialSlider-One">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper yotta_testimonial_one" id="yotta-testimonialSlider-One-<?php echo esc_attr($rand_numb); ?>"
+            <div class="swiper client-slider yottaTestimonialOne"  id="yotta-testimonialOne-<?php echo esc_attr($rand_numb); ?>"
                      data-settings='<?php echo json_encode($testimonial_settings); ?>'>
-
-                     <?php
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <?php
                     foreach ($all_testimonial_items as $item):
+
                         $image_id = $item['image']['id'] ?? '';
                         $image_url = !empty($image_id) ? wp_get_attachment_image_src($image_id, 'full', false)[0] : '';
                         $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
                         ?>
 
-
-                    <div class="swiper-slide">
-                        <div class="client-item">
-                            <div class="client-header">
-                                <div class="client-ratings">
-                                    <span class="ratings">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </span>
+                        <!-- Slider Item -->
+                        <div class="swiper-slide">
+                            <div class="client-item">
+                                <div class="client-header">
+                                    <?php if (!empty($item['ratings'])): ?>
+                                    <div class="client-ratings">
+                                        <span class="ratings">
+                                            <?php
+                                                for ($i = 0; $i < $item['ratings_count']; $i++) {
+                                                    print( '<i class="fa fa-star"></i>');
+                                                }
+                                            ?>
+                                        </span>
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if (!empty($item['ratings'])): ?> <!-- End of Ratings -->
+                                    <div class="client-quote">
+                                        <?php
+                                            Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
+                                        ?>
+                                    </div>
+                                    <?php endif; ?>
+                                </div> <!-- End of Icon -->
+                                <div class="client-content">
+                                    <p><?php echo esc_html($item['description']); ?></p>
                                 </div>
-                                <div class="client-quote">
-                                    <img src="assets/images/client/quote.png" alt="quote">
-                                </div>
-                            </div>
-                            <div class="client-content">
-                                <p>A testimonial is effectively a 
-                                    review or recommendation from 
-                                    a client, letting other people 
-                                    know how your products.</p>
-                            </div>
-                            <div class="client-footer">
+                                <div class="client-footer">
+                                <?php if($image_url): ?>
                                 <div class="client-footer-user-thumb">
-                                    <img src="assets/images/client/client-2.png" alt="client">
+                                    <img src="<?php echo esc_url($image_url); ?>"
+                                        alt="<?php echo esc_attr($image_alt); ?>">
                                 </div>
-                                <div class="client-footer-user-content">
-                                    <h6 class="title">Manisha Kair</h6>
+                                <?php endif; ?>
+
+                                    <div class="client-footer-user-content">
+                                        <h6 class="title"><?php echo esc_html($item['name']); ?></h6>
+                                        <?php
+                                        if (!empty($item['designation_status'])) {
+                                            printf('<span class="designation">%1$s</span>', esc_html($item['designation']));
+                                        }
+                                    ?>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
 
                 <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-
+                <?php if (!empty($settings['dots'])) : ?>
+                    <div class="swiper-pagination"></div>
+                <?php endif;?>
                 <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-
-                <!-- If we need scrollbar -->
-                <!-- <div class="swiper-scrollbar"></div> -->
+                <?php if (!empty($settings['nav'])) : ?>
+                    <div class="prev-icon"><?php echo $navleft; ?></div>
+                    <div class="next-icon"><?php echo $navright; ?></div>
+                <?php endif;?>
             </div>
 
 
