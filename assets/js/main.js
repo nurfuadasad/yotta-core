@@ -411,6 +411,7 @@ function activeTestimonialSliderOne($scope) {
           autoplay: elSettings.autoplay === 'yes' && {
             delay: elSettings.autoplaytimeout,
           },
+          pauseOnMouseEnter: true,
           //direction: 'vertical',
           navigation: {
               prevEl:  'prev-icon',
