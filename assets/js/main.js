@@ -389,126 +389,52 @@
 
     }
 
-
     /*----------------------------
-     * Testimonial Slider - One
-     * --------------------------*/
-    var Testislider1 = function($scope, $) {
-
-        $scope.find('.client-area').each(function() {
-            var settings = $(this).data('softim');
-
-            // Js Start
-            var swiper = new Swiper('.client-slider', {
-                slidesPerView: 3,
-                spaceBetween: 30,
-                loop: true,
-                pagination: {
-                    el: '.client-pagination',
-                    clickable: true,
-                    renderBullet: function(index, className) {
-                        return '<span class="' + className + '">' + (index + 1) + '</span>';
-                    },
-                },
-                navigation: {
-                    nextEl: '.slider-next',
-                    prevEl: '.slider-prev',
-                },
-                autoplay: {
-                    speeds: 2000,
-                    delay: 4000,
-                },
-                speed: 1000,
-                breakpoints: {
-                    1199: {
-                        slidesPerView: 2,
-                    },
-                    991: {
-                        slidesPerView: 2,
-                    },
-                    767: {
-                        slidesPerView: 1,
-                    },
-                    575: {
-                        slidesPerView: 1,
-                    },
-                }
-            });
-
-            // Js End
-        });
-
-    };
-
-    /*----------------------------
-     * Testimonial Slider- one
-     * --------------------------*/
+    * Testimonial Slider - One
+    * --------------------------*/
     function activeTestimonialSliderOne($scope) {
-        var el = $scope.find('.yotta-testimonial-one');
+
+        var el = $scope.find('.yottaTestimonialOne');
         var elSettings = el.data('settings');
-
-        console.log(elSettings);
-        if ((el.children('div').length < 2) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
-            return
+        console.log(elSettings.direction);
+    
+        if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
+            return;
         }
-
-        let $selector = '#' + el.attr('id');
-        let sliderSettings = {
-            infinite: elSettings.loop === 'yes',
-            slidesToShow: elSettings.items,
-            slidesToScroll: 1,
-            arrows: elSettings.nav === 'yes',
-            dots: elSettings.dot === 'yes',
-            autoplaySpeed: elSettings.autoplaytimeout,
-            autoplay: elSettings.autoplay === 'yes',
-            centerMode: elSettings.center === 'yes',
-            vertical: elSettings.vertical === 'yes',
-            appendArrows: $scope.find('.slick-carousel-controls .slider-nav'),
-            appendDots: $scope.find('.slick-carousel-controls .slider-dots'),
-            prevArrow: '<div class="prev-arrow">' + elSettings.navleft + '</div>',
-            nextArrow: '<div class="next-arrow">' + elSettings.navright + '</div>',
-            centerPadding: elSettings.centerpadding + 'px',
-            cssEase: 'linear',
-            responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
-                    }
+        var swiper = new Swiper('.yottaTestimonialOne', {
+            slidesPerView: elSettings.items,
+            spaceBetween: parseInt(elSettings.itemgap),
+            loop: elSettings.loop == 'yes',
+            centeredSlides: elSettings.center === 'yes',
+            autoplay: elSettings.autoplay === 'yes' && {
+                delay: elSettings.autoplaytimeout,
+            },
+            pauseOnMouseEnter: true,
+            direction: elSettings.direction,
+            navigation: {
+                prevEl:  'prev-icon',
+                nextEl:  'next-icon', 
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: true,
+            },
+            breakpoints: {
+                991: {
+                    slidesPerView: 3,
                 },
-                {
-                    breakpoint: 800,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
-
-                    }
+                767: {
+                    slidesPerView: 2,
                 },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
-                        arrows: false
-                    }
+                575: {
+                    slidesPerView: 1,
                 },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        centerPadding: 0,
-                        arrows: false
-
-                    }
-                }
-            ]
-        }
-        wowSlickInit($selector, sliderSettings);
-
+                420: {
+                    slidesPerView: 1,
+                },
+            }
+        });
     }
 
     /*----------------------------
@@ -560,10 +486,9 @@
         wowSlickInit($selector, sliderSettings);
     }
 
-
     /*----------------------------
-     * Service Grid Slider
-     * --------------------------*/
+    * Service Grid Slider
+    * --------------------------*/
     function activeServiceGridSliderOne($scope) {
         var el = $scope.find('.service-grid-carousel');
         var elSettings = el.data('settings');
@@ -613,7 +538,6 @@
         }
         wowSlickInit($selector, sliderSettings);
     }
-
 
     /*----------------------------
          Team Member Slider
@@ -685,8 +609,7 @@
             time: 3000
         });
     }
-
-    $(document).ready(function() {
+    $(document).ready(function () {
         /*--------------------
           wow js init
       ---------------------*/
