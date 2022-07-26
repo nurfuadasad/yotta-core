@@ -95,7 +95,7 @@
         });
 
     });
-
+    $("select").niceSelect(),
     /**-----------------------------
      *  countdown
      * ---------------------------*/
@@ -458,7 +458,6 @@
         let sliderSettings = {
             infinite: elSettings.loop === 'yes',
             slidesToShow: elSettings.items,
-            centerPadding: '70px',
             slidesToScroll: 1,
             arrows: elSettings.nav === 'yes',
             dots: elSettings.dot === 'yes',
