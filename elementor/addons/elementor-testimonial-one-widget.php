@@ -137,9 +137,22 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
             ]);
         $repeater->add_control('icon_status',
             [
-                'label' => esc_html__('Image Show/Hide', 'yotta-core'),
+                'label' => esc_html__('Icon Show/Hide', 'yotta-core'),
                 'type' => Controls_Manager::SWITCHER,
                 'description' => esc_html__('Choose Icon or Image Only', 'yotta-core'),
+            ]);
+
+        $repeater->add_control('icon_selector',
+            [
+                'label' => esc_html__('Select', 'yotta-core'),
+                'type' => Controls_Manager::SELECT,
+                'description' => esc_html__('Set Testimonial Type', 'yotta-core'),
+                'options' => [
+                    'one' => esc_html__('Icon', 'yotta-core'),
+                    'two' => esc_html__('Image', 'yotta-core'),
+    
+                ],
+                'default'   => 'one',
             ]);
         $repeater->add_control(
             'icon',
@@ -148,6 +161,10 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
                 'type' => Controls_Manager::ICONS,
                 'description' => esc_html__('select Icon.', 'yotta-core'),
                 'condition' => ['icon_status' => 'yes'],
+                'condition' => [
+                    'icon_status' => 'yes',
+                    'icon_selector' => 'one'
+                ],
                 'default' => [
                     'value' => 'flaticon-straight-quotes',
                     'library' => 'solid',
@@ -161,6 +178,10 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
                 'type' => Controls_Manager::MEDIA,
                 'description' => esc_html__('select Icon Image.', 'yotta-core'),
                 'condition' => ['icon_status' => 'yes'],
+                'condition' => [
+                    'icon_status' => 'yes',
+                    'icon_selector' => 'two'
+                ],
                 'default' => array(
                     'url' => Utils::get_placeholder_image_src()
                 )
