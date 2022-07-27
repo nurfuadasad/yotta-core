@@ -506,9 +506,17 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .client-item .client-header .client-quote" => "color: {{VALUE}}"
+                "{{WRAPPER}} .client-item .client-header .client-quote" => "color: {{VALUE}}",
+                "{{WRAPPER}} .client-item .client-header .client-quote" => "fill: {{VALUE}}"
             ]
         ]);
+        $this->add_group_control(Group_Control_Background::get_type(), [
+            'label' => esc_html__('Background', 'yotta-core'),
+            'name' => 'icon_bg',
+            'selector' => "{{WRAPPER}} .client-item .client-header .client-quote"
+        ]);
+
+
         $this->add_control('name_color', [
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Name Color', 'yotta-core'),

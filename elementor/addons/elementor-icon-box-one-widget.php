@@ -36,7 +36,7 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Icon Box: 01', 'yotta-core');
+        return esc_html__('Yotta : Icon Box 01', 'yotta-core');
     }
 
     /**
@@ -334,7 +334,7 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
             'label' => esc_html__('Icon Color', 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'selectors' => [
-                "{{WRAPPER}} .icon-box-item:hover .icon" => "color: {{VALUE}}"
+                "{{WRAPPER}} .icon-box-item:hover .icon" => "fill: {{VALUE}}"
             ]
         ]);
         $this->add_control('title_hover_color', [
@@ -528,6 +528,7 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
             'type' => Controls_Manager::COLOR,
             'selectors' => [
                 "{{WRAPPER}} .icon-box-item .icon" => "color: {{VALUE}}",
+                "{{WRAPPER}} .icon-box-item .icon svg" => "fill: {{VALUE}}",
                 "{{WRAPPER}} .icon-box-item .text-icon" => "color: {{VALUE}}"
             ]
         ]);
@@ -607,7 +608,7 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
                 <?php if ($settings['icon_selector'] == 'icon'): ?>
                     <div class="icon <?php echo $settings['icon_shape_style'] ?>">
                         <?php
-                        Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);
+                            Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);
                         ?>
                     </div>
                 <?php elseif ($settings['icon_selector'] == 'image'):

@@ -21,7 +21,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
      */
     public function get_name()
     {
-        return 'yotta-counterupp-one-widget';
+        return 'yotta-counterup-one-widget';
     }
 
       /**
@@ -436,6 +436,8 @@ class Yotta_Counterup_One_Widget extends Widget_Base
         $title = $settings['title'];
         $number = $settings['number'];
         $icon = $settings['counterup_icon'];
+
+        $rand_numb = rand(333, 999999999);
  
         $this->add_render_attribute('counterup_wrapper', 'class', 'statistics-item');
         $this->add_render_attribute('counterup_wrapper', 'style', 'text-align:' . $settings['text_align']);
@@ -443,7 +445,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
         ?>
 
         <!-- Yotta Counterup -->
-        <div <?php echo $this->get_render_attribute_string('counterup_wrapper'); ?>>
+        <div <?php echo $this->get_render_attribute_string('counterup_wrapper'); ?> id="statistics_id-<?php echo esc_attr($rand_numb); ?>">
                 <div class="counterup-icon" <?php echo $this->get_render_attribute_string('counterup_display'); ?>>
                     <?php if (isset($icon)) : ?>
                             <span class="<?php echo esc_attr($icon['value']); ?>"></span>                  
@@ -452,7 +454,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
                 </div>
                 <div class="statistics-content">
                     <div class="odo-area">
-                        <h3 class="count-num odo-title odometer" data-odometer-final="<?php echo esc_html($number); ?>"><?php echo esc_html($number); ?></h3>
+                        <h3 class="count-num odo-title odometer" data-odometer-final="<?php echo esc_html($number); ?>">0</h3>
                         <h3 class="title">
                             <?php if (!empty($settings['sign'])) : ?>
                                 <?php echo esc_html($settings['sign']) ?>

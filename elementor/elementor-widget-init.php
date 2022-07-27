@@ -90,7 +90,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 //				'header-slider-one',
 //				'header-slider-two',
 				'heading-title',
-//				'icon-box-one',
+				'icon-box-one',
 				'live-video-popup',
 				'post-title',
 //				'post-image',
