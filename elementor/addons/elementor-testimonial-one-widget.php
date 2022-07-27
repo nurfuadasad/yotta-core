@@ -137,9 +137,22 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
             ]);
         $repeater->add_control('icon_status',
             [
-                'label' => esc_html__('Image Show/Hide', 'yotta-core'),
+                'label' => esc_html__('Icon Show/Hide', 'yotta-core'),
                 'type' => Controls_Manager::SWITCHER,
-                'description' => esc_html__('show/hide image', 'yotta-core'),
+                'description' => esc_html__('Choose Icon or Image Only', 'yotta-core'),
+            ]);
+
+        $repeater->add_control('icon_selector',
+            [
+                'label' => esc_html__('Select', 'yotta-core'),
+                'type' => Controls_Manager::SELECT,
+                'description' => esc_html__('Set Testimonial Type', 'yotta-core'),
+                'options' => [
+                    'one' => esc_html__('Icon', 'yotta-core'),
+                    'two' => esc_html__('Image', 'yotta-core'),
+    
+                ],
+                'default'   => 'one',
             ]);
         $repeater->add_control(
             'icon',
@@ -148,10 +161,30 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
                 'type' => Controls_Manager::ICONS,
                 'description' => esc_html__('select Icon.', 'yotta-core'),
                 'condition' => ['icon_status' => 'yes'],
+                'condition' => [
+                    'icon_status' => 'yes',
+                    'icon_selector' => 'one'
+                ],
                 'default' => [
                     'value' => 'flaticon-straight-quotes',
                     'library' => 'solid',
                 ]
+            ]
+        );
+        $repeater->add_control(
+            'icon_image',
+            [
+                'label' => esc_html__('Icon Image', 'yotta-core'),
+                'type' => Controls_Manager::MEDIA,
+                'description' => esc_html__('select Icon Image.', 'yotta-core'),
+                'condition' => ['icon_status' => 'yes'],
+                'condition' => [
+                    'icon_status' => 'yes',
+                    'icon_selector' => 'two'
+                ],
+                'default' => array(
+                    'url' => Utils::get_placeholder_image_src()
+                )
             ]
         );
         $repeater->add_control('client_name',
@@ -277,7 +310,7 @@ Fight School has specialized.", 'yotta-core'),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
-                        'min' => 0,
+                        'min' => 1000,
                         'max' => 10000,
                         'step' => 2,
                     ]
@@ -494,9 +527,17 @@ Fight School has specialized.", 'yotta-core'),
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Icon Color', 'yotta-core'),
             'selectors' => [
-                "{{WRAPPER}} .client-item .client-header .client-quote" => "color: {{VALUE}}"
+                "{{WRAPPER}} .client-item .client-header .client-quote" => "color: {{VALUE}}",
+                "{{WRAPPER}} .client-item .client-header .client-quote" => "fill: {{VALUE}}"
             ]
         ]);
+        $this->add_group_control(Group_Control_Background::get_type(), [
+            'label' => esc_html__('Background', 'yotta-core'),
+            'name' => 'icon_bg',
+            'selector' => "{{WRAPPER}} .client-item .client-header .client-quote"
+        ]);
+
+
         $this->add_control('name_color', [
             'type' => Controls_Manager::COLOR,
             'label' => esc_html__('Name Color', 'yotta-core'),
@@ -639,12 +680,17 @@ Fight School has specialized.", 'yotta-core'),
                                         </span>
                                     </div>
                                     <?php endif; ?>
-                                    <?php if (!empty($item['icon'])): ?> <!-- End of Ratings -->
-                                    <div class="client-quote">
-                                        <?php
-                                            Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
-                                        ?>
-                                    </div>
+                                    <?php if ($item['icon_status'] == 'yes'): ?> <!-- End of Ratings -->
+                                        <div class="client-quote">
+                                            <?php
+                                                if (!empty($item['icon'])){
+                                                    Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
+                                                }
+                                                if (!empty($item['icon_image']) ){
+                                                    echo '<img src="'.esc_url($item['icon_image']['url']).'">';
+                                                }
+                                            ?>
+                                        </div>
                                     <?php endif; ?>
                                 </div> <!-- End of Icon -->
                                 <div class="client-content">
