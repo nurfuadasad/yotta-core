@@ -36,7 +36,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Price Plan: 01', 'yotta-core');
+        return esc_html__('Yotta : Price Plan 01', 'yotta-core');
     }
 
     public function get_keywords()
@@ -671,7 +671,7 @@ class Yotta_Price_Plan_One_Widget extends Widget_Base
                         ?>
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10">
                             <div class="plan-item margin-bottom-30 <?php echo esc_attr($details_item['active_package']); ?>">
-                                <div class="plan-header-area">
+                                <div class="plan-header-area margin-top-40">
                                     <div class="plan-icon">
                                         <img src="<?php echo esc_url($image_url) ?>"
                                              alt="<?php echo esc_attr($image_alt) ?>">

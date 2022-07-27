@@ -386,7 +386,6 @@
             ]
         }
         wowSlickInit($selector, sliderSettings);
-
     }
 
     /*----------------------------
@@ -396,7 +395,6 @@
 
         var el = $scope.find('.yottaTestimonialOne');
         var elSettings = el.data('settings');
-        console.log(elSettings.direction);
     
         if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
             return;
@@ -625,6 +623,5 @@
         });
 
     });
-
 
 })(jQuery);

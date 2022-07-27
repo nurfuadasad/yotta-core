@@ -139,7 +139,7 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
             [
                 'label' => esc_html__('Image Show/Hide', 'yotta-core'),
                 'type' => Controls_Manager::SWITCHER,
-                'description' => esc_html__('show/hide image', 'yotta-core'),
+                'description' => esc_html__('Choose Icon or Image Only', 'yotta-core'),
             ]);
         $repeater->add_control(
             'icon',
@@ -152,6 +152,18 @@ class Yotta_Testimonial_One_Widget extends Widget_Base
                     'value' => 'flaticon-straight-quotes',
                     'library' => 'solid',
                 ]
+            ]
+        );
+        $repeater->add_control(
+            'icon_image',
+            [
+                'label' => esc_html__('Icon Image', 'yotta-core'),
+                'type' => Controls_Manager::MEDIA,
+                'description' => esc_html__('select Icon Image.', 'yotta-core'),
+                'condition' => ['icon_status' => 'yes'],
+                'default' => array(
+                    'url' => Utils::get_placeholder_image_src()
+                )
             ]
         );
         $repeater->add_control('client_name',
@@ -639,12 +651,17 @@ Fight School has specialized.", 'yotta-core'),
                                         </span>
                                     </div>
                                     <?php endif; ?>
-                                    <?php if (!empty($item['icon'])): ?> <!-- End of Ratings -->
-                                    <div class="client-quote">
-                                        <?php
-                                            Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
-                                        ?>
-                                    </div>
+                                    <?php if ($item['icon_status'] == 'yes'): ?> <!-- End of Ratings -->
+                                        <div class="client-quote">
+                                            <?php
+                                                if (!empty($item['icon'])){
+                                                    Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
+                                                }
+                                                if (!empty($item['icon_image']) ){
+                                                    echo '<img src="'.esc_url($item['icon_image']['url']).'">';
+                                                }
+                                            ?>
+                                        </div>
                                     <?php endif; ?>
                                 </div> <!-- End of Icon -->
                                 <div class="client-content">
