@@ -189,6 +189,8 @@ class Yotta_Section_Title_One_Widget extends Widget_Base
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
+
+
         $this->add_control(
             'shape_top_space',
             [
@@ -323,7 +325,7 @@ class Yotta_Section_Title_One_Widget extends Widget_Base
         );
         $this->end_controls_section();
         $this->start_controls_section(
-            'styling_typogrpahy_section',
+            'styling_typography_section',
             [
                 'label' => esc_html__('Typography Settings', 'yotta-core'),
                 'tab' => Controls_Manager::TAB_STYLE,

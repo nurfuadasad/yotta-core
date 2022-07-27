@@ -79,6 +79,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 //				'countdown',
 				'counterup-one',
 				'navbar-style-one',
+				'navbar-style-two',
 //				'empty-div',
 //				'event-trainer',
 //				'events-grid',
