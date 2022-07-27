@@ -36,7 +36,7 @@ class Yotta_Boxed_Button_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Button: 01', 'yotta-core');
+        return esc_html__('Yotta : Button 01', 'yotta-core');
     }
 
     public function get_keywords()
@@ -226,7 +226,7 @@ class Yotta_Boxed_Button_Widget extends Widget_Base
             ]
         );
         $this->start_controls_tabs('button_background');
-
+        // Normal Tab
         $this->start_controls_tab('normal_style', [
             'label' => esc_html__('Normal', 'yotta-core')
         ]);
@@ -281,7 +281,7 @@ class Yotta_Boxed_Button_Widget extends Widget_Base
             ]
         );
         $this->end_controls_tab();
-
+        // Hover Tab
         $this->start_controls_tab('hover_style', [
             'label' => esc_html__('Hover', 'yotta-core')
         ]);
@@ -296,7 +296,7 @@ class Yotta_Boxed_Button_Widget extends Widget_Base
             'description' => esc_html__('change button text color', 'yotta-core'),
             'default' => '#333',
             'selectors' => [
-                "{{WRAPPER}} .btn-wrap .btn--base :hover" => "color: {{VALUE}}"
+                "{{WRAPPER}} .btn-wrap .btn--base:hover" => "color: {{VALUE}}"
             ]
         ]);
         $this->add_group_control(Group_Control_Background::get_type(), [

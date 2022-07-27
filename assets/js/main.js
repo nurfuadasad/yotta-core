@@ -386,7 +386,6 @@
             ]
         }
         wowSlickInit($selector, sliderSettings);
-
     }
 
     /*----------------------------
@@ -396,7 +395,6 @@
 
         var el = $scope.find('.yottaTestimonialOne');
         var elSettings = el.data('settings');
-        console.log(elSettings.direction);
     
         if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
             return;
@@ -600,8 +598,22 @@
         $($selector).slick(settings);
     }
 
+//Odometer
+// if ($(".statistics-item").length) {
+//     $(".statistics-item").each(function () {
+//       $(this).isInViewport(function (status) {
+//         if (status === "entered") {
+//           for (var i = 0; i < document.querySelectorAll(".odometer").length; i++) {
+//             var el = document.querySelectorAll('.odometer')[i];
+//             el.innerHTML = el.getAttribute("data-odometer-final");
+//           }
+//         }
+//       });
+//     });
+//   }
+
     /*------------------------------
-            counter section activation
+    counter section activation
     -------------------------------*/
     function counterupInit($scope) {
         $scope.counterUp({
@@ -625,6 +637,5 @@
         });
 
     });
-
 
 })(jQuery);
