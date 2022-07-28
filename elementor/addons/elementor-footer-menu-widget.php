@@ -36,7 +36,7 @@ class Yotta_Footer_Menu_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Yotta Navbar Style 02', 'yotta-core');
+        return esc_html__('Yotta Footer Menu List', 'yotta-core');
     }
 
     public function get_keywords()
@@ -97,10 +97,16 @@ class Yotta_Footer_Menu_Widget extends Widget_Base
             'title',
             [
                 'label' => esc_html__('Title', 'yotta-core'),
-                'type' => Controls_Manager::TEXTAREA,
+                'type' => Controls_Manager::TEXT,
                 'default' => esc_html__('What We Do', 'yotta-core'),
             ]
         );
+        $this->add_control('menu', [
+            'type' => Controls_Manager::SELECT,
+            'label' => esc_html__('Menu', 'yotta-core'),
+            'options' => yotta_core()->get_nav_menu_list(),
+            'description' => esc_html__('select menu for navbar', 'yotta-core')
+        ]);
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -118,6 +124,7 @@ class Yotta_Footer_Menu_Widget extends Widget_Base
                 "{{WRAPPER}} .theme-heading-title .title" => "color: {{VALUE}}"
             ]
         ]);
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -154,10 +161,8 @@ class Yotta_Footer_Menu_Widget extends Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
-        //button attribute
-
         ?>
-        <div class="footer-widget widget footer-menu-item">
+        <div class="footer-widget">
             <div class="footer-title">
                 <h4 class="widget-headline">
                     <?php
@@ -168,11 +173,11 @@ class Yotta_Footer_Menu_Widget extends Widget_Base
                 </h4>
             </div>
             <?php
-            if (!empty($menu)) {
+            if (!empty($settings['menu'])) {
                 $menu_args = [
                     'container_class' => 'navbar-collapse',
-                    'menu_class' => 'navbar-nav',
-                    'menu' => $menu
+                    'menu_class' => 'footer-list',
+                    'menu' => $settings['menu']
                 ];
                 wp_nav_menu($menu_args);
             }

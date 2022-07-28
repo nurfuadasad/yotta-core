@@ -85,6 +85,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 //				'events-grid',
 //				'events-list',
 //				'feature-single-item-one',
+				'footer-menu',
 //				'gallery',
 				'gallery-slider-item',
 				'googlemap-locator',
