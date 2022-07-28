@@ -601,22 +601,27 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
         }
         ?>
 
-        <div class="icon-box-item <?php echo $settings['position'] . " " .
+    <section class="feature-section">
+        <div class="feature-item icon-box-item  <?php echo $settings['position'] . " " .
             $settings['white_section_title'] ?>"
              style="text-align:<?php echo $settings['text_align']; ?>">
             <div class="icon-wrap">
+                <div class="icon_extra">
                 <?php if ($settings['icon_selector'] == 'icon'): ?>
+
                     <div class="icon <?php echo $settings['icon_shape_style'] ?>">
                         <?php
                             Icons_Manager::render_icon($settings['icon'], ['aria-hidden' => 'true']);
                         ?>
                     </div>
-                <?php elseif ($settings['icon_selector'] == 'image'):
-                    printf('<img src="%1$s" alt="%2$s">', esc_url($image_url), esc_attr($image_alt));
-                else:
-                    printf('<div class="text-icon"><span>%1$s</span></div>', esc_html($settings['text_icon']));
+
+                    <?php elseif ($settings['icon_selector'] == 'image'):
+                        printf('<img src="%1$s" alt="%2$s">', esc_url($image_url), esc_attr($image_alt));
+                    else:
+                        printf('<div class="text-icon"><span>%1$s</span></div>', esc_html($settings['text_icon']));
 
                 endif; ?>
+            </div>
             </div>
             <div class="content">
                 <?php
@@ -629,7 +634,7 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
                 } ?>
             </div>
         </div>
-
+    </section>
         <?php
     }
 }
