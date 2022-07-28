@@ -1,7 +1,10 @@
-.icon-wrap .icon {
+.icon-wrap .icon_extra {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.icon-box-item.feature-item {
+    padding: 0;
 }
 
