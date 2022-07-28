@@ -601,7 +601,8 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
         }
         ?>
 
-        <div class="icon-box-item feature-item <?php echo $settings['position'] . " " .
+    <section class="feature-section">
+        <div class="feature-item icon-box-item  <?php echo $settings['position'] . " " .
             $settings['white_section_title'] ?>"
              style="text-align:<?php echo $settings['text_align']; ?>">
             <div class="icon-wrap">
@@ -633,7 +634,7 @@ class Yotta_Icon_Box_One_Widget extends Widget_Base
                 } ?>
             </div>
         </div>
-
+    </section>
         <?php
     }
 }

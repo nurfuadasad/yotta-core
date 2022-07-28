@@ -1,10 +1,14 @@
-.icon-wrap .icon_extra {
+.feature-section .icon-wrap .icon_extra {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.icon-box-item.feature-item {
+.feature-section .feature-item {
     padding: 0;
+    background: none;
 }
-
+.hosting-item .hosting-content .hosting-btn a::after {
+    left: -0.89em;
+    top: 2px;
+}
