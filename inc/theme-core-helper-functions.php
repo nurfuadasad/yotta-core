@@ -596,6 +596,40 @@ if (!class_exists('Yotta_Core_Helper_Functions')) {
             }
         }
 
+        // Get All Post Options For Elementor Controller
+        public function get_controller_post_opts($title, $post_type = NULL, $meta_key = NULL, $meta_value = NULL)
+        {
+            if (!empty($post_type)){
+                $arg = [
+                    'post_type' => $post_type,
+                ];
+            }else{
+                $arg = [];
+            }
+
+            if( !empty($meta_key) && !empty($meta_value)){
+                $arg['meta_query'] = array(
+                        array(
+                            'key' => $meta_key,
+                            'value' => $meta_value,
+                        )
+                    );
+            }
+                        
+            $posts = get_posts( $arg);
+            $options = [];
+
+            if (!empty($posts)) {
+                foreach ($posts as $post) {
+                    $options += [
+                        $post->$title => esc_html__(strtoupper($post->post_title), 'yotta-core'),
+                    ];
+                };
+            };
+
+            return $options;
+        }
+
         /**
          * Render elementor link attributes
          * @since 1.0.0

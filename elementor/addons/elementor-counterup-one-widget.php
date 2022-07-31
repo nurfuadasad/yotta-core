@@ -50,7 +50,7 @@ class Yotta_Counterup_One_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Counterup: 01', 'yotta-core');
+        return esc_html__('Yotta : Counterup 01', 'yotta-core');
     }
 
     /**
