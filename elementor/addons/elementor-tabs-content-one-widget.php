@@ -649,7 +649,7 @@ Fight School has specialized.", 'yotta-core'),
         $navright = yotta_core()->render_elementor_icons($settings['nav_right_arrow']);
 
         ?>
-<h2>hello Tabs</h2>
+        <h2>hello Tabs</h2>
 
         <?php
     }
