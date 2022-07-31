@@ -102,7 +102,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 //				'routine-calendar-single-item',
 //				'single-skill-item',
 				'service-single-item',
-				// 'tabs-content-one',
+				'tabs-content-one',
 //				'team-single-item',
 //				'team-single-item-two',
 				'testimonial-one',

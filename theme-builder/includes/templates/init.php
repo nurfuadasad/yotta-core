@@ -144,7 +144,6 @@ function get_themebuilder_Id( $id, $type = 'header' ) {
     if(get_builder_id($arr, 'entire_website')) {
         return $content_id = get_builder_id($arr, 'entire_website');
     }
-    
         return '';
      }
     }
