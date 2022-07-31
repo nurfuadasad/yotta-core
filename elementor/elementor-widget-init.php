@@ -74,7 +74,7 @@ if ( ! class_exists( 'Yotta_Elementor_Widget_Init' ) ) {
 				'brand-slider',
 				'button-one',
 //				'call-to-action-item',
-//				'choose-single-item-one',
+				'choose-single-item-one',
 //				'contact-info-list-one',
 //				'countdown',
 				'counterup-one',
