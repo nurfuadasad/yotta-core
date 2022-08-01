@@ -128,7 +128,7 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 			]
 		);
         $repeater->add_control(
-            'icon',
+            'yotta_tab_icon',
             [
                 'label' => esc_html__('Icon', 'yotta-core'),
                 'type' => Controls_Manager::ICONS,
@@ -306,12 +306,19 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 					<?php if (!empty($yotta_tab_items_tabs)) :
 						foreach ($yotta_tab_items_tabs as $key=> $tab) : 
                          
-                              $first_loop_class = $key === 0 ? 'nav-link text-center active show' : 'nav-link text-center';
+                        $first_loop_class = $key === 0 ? 'nav-link text-center active show' : 'nav-link text-center';
                         ?>
-                        <a class="<?php echo esc_attr( $first_loop_class ); ?>" id="<?php echo esc_attr( $tab['_id'] ); ?>" data-toggle="tab" href="#el-<?php echo esc_attr( $tab['_id'] ); ?>" role="tab" aria-controls="drupal" aria-selected="true">
-                            <div class="web-hosting-tab-icon">
-                                <i class="lab la-drupal"></i>
+                        <a class="<?php echo esc_attr( $first_loop_class ); ?>" id="#el-<?php echo esc_attr( $tab['_id'] ); ?>" data-toggle="tab" href="#el-<?php echo esc_attr( $tab['_id'] ); ?>" role="tab" aria-selected="true">
+                            <?php if(!empty($yotta_tab_icon)): ?>
+							<div class="web-hosting-tab-icon">
+							<?php
+                            	Icons_Manager::render_icon($tab['yotta_tab_icon'], ['aria-hidden' => 'true']);
+								echo "dfkldfjkdfj";
+							?>
+                                <!-- <i class="lab la-drupal"></i> -->
+								
                             </div>
+							<?php endif; ?>
                             <span><?php echo esc_html($tab['yotta_tab_items_title']); ?></span>
                         </a>
 					    <?php endforeach;
@@ -327,7 +334,7 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 					foreach ($yotta_tab_items_tabs as $key=>$tab) :
 						$elementor = \Elementor\Plugin::instance(); ?>
 
-                    <?php $first_content_class = ($key  === 0) ? 'active show tab-pane fade': 'tab-pane fade show'; ?>
+                    <?php $first_content_class = ($key  === 0) ? 'active show tab-pane fade': 'tab-pane fade'; ?>
                     <div class="<?php echo esc_attr( $first_content_class ); ?>" id="el-<?php echo esc_attr($tab['_id']); ?>" role="tabpanel">
                         <div class="web-hosting-item">
 							<!-- Post View -->

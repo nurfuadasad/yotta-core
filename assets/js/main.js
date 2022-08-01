@@ -86,9 +86,9 @@
             countdownInit($scope.find('.mycountdown'));
         });
 
-        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-tabs-one-widget.default', function($scope) {
-            yottaTabs($scope);
-        });
+        // elementorFrontend.hooks.addAction('frontend/element_ready/yotta-tabs-one-widget.default', function($scope) {
+        //     yottaTabs($scope);
+        // });
 
     });
 
