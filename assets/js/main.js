@@ -86,6 +86,10 @@
             countdownInit($scope.find('.mycountdown'));
         });
 
+        elementorFrontend.hooks.addAction('frontend/element_ready/yotta-tabs-one-widget.default', function($scope) {
+            yottaTabs($scope);
+        });
+
     });
 
 
@@ -597,6 +601,14 @@
     function wowSlickInit($selector, settings, animateOut = false) {
         $($selector).slick(settings);
     }
+
+    // function yottaTabs( $scope ) {
+    //    let navItem = $scope.find('.yotta-tabs-nav .nav > a');
+    //    $(navItem).on('click', function(){
+    //       let elId = $(this).attr('href');
+    //         $(elId).addClass('show');
+    //    });
+    // }
 
 //Odometer
 // if ($(".statistics-item").length) {

@@ -295,164 +295,55 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-
+        extract($settings);
         ?>
-                <div class="web-hosting-tab-area">
-                    <div class="web-hosting-tab">
-                        <nav>
+        <div class="web-hosting-tab-area">
+            <div class="web-hosting-tab">
+                <nav class="yotta-tabs-nav">
+                    <div class="nav nav-tabs" role="tablist">
 
-                            <div class="nav nav-tabs" id="nav-tab-five" role="tablist">
-                                <a class="nav-link text-center" id="drupal-tab" data-toggle="tab" href="#drupal" role="tab" aria-controls="drupal" aria-selected="false">
-                                    <div class="web-hosting-tab-icon">
-                                        <i class="lab la-drupal"></i>
-                                    </div>
-                                    <span>Drupal</span>
-                                </a>
-                                <a class="nav-link text-center" id="joomla-tab" data-toggle="tab" href="#joomla" role="tab" aria-controls="joomla" aria-selected="false">
-                                    <div class="web-hosting-tab-icon">
-                                        <i class="lab la-joomla"></i>
-                                    </div>
-                                    <span>Joomla</span>
-                                </a>
-                                <a class="nav-link text-center active" id="wordPress-tab" data-toggle="tab" href="#wordPress" role="tab" aria-controls="wordPress" aria-selected="true">
-                                    <div class="web-hosting-tab-icon">
-                                        <i class="lab la-wordpress"></i>
-                                    </div>
-                                    <span>WordPress</span>
-                                </a>
-                                <a class="nav-link text-center" id="magento-tab" data-toggle="tab" href="#magento" role="tab" aria-controls="magento" aria-selected="false">
-                                    <div class="web-hosting-tab-icon">
-                                        <i class="lab la-magento"></i>
-                                    </div>
-                                    <span>Magento</span>
-                                </a>
-                                <a class="nav-link text-center" id="openCart-tab" data-toggle="tab" href="#openCart" role="tab" aria-controls="openCart" aria-selected="false">
-                                    <div class="web-hosting-tab-icon">
-                                        <i class="lab la-opencart"></i>
-                                    </div>
-                                    <span>OpenCart</span>
-                                </a>
+					<!-- Tabs -->
+					<?php if (!empty($yotta_tab_items_tabs)) :
+						foreach ($yotta_tab_items_tabs as $key=> $tab) : 
+                         
+                              $first_loop_class = $key === 0 ? 'nav-link text-center active show' : 'nav-link text-center';
+                        ?>
+                        <a class="<?php echo esc_attr( $first_loop_class ); ?>" id="<?php echo esc_attr( $tab['_id'] ); ?>" data-toggle="tab" href="#el-<?php echo esc_attr( $tab['_id'] ); ?>" role="tab" aria-controls="drupal" aria-selected="true">
+                            <div class="web-hosting-tab-icon">
+                                <i class="lab la-drupal"></i>
                             </div>
+                            <span><?php echo esc_html($tab['yotta_tab_items_title']); ?></span>
+                        </a>
+					    <?php endforeach;
+					endif; ?>
 
-                        </nav>
+                    </div>
+                </nav>
 
-
-                        <div class="tab-content" id="nav-tabContent-five">
-                            <div class="tab-pane fade" id="drupal" role="tabpanel" aria-labelledby="drupal-tab">
-                                <div class="web-hosting-item">
-                                    <div class="row justify-content-center mb-30-none">
-                                        <div class="col-xl-7 col-lg-6 mb-30">
-                                            <div class="web-hosting-content">
-                                                <h3 class="title">Managed Drupal Hosting</h3>
-                                                <p>WordPress is the world’s most popular blog/CMS solution. Monthly high volume visitor adoptable traffic handler web hosting package available for hosting service.</p>
-                                                <p>Bookan unknown printer took a galley of type and scrambled make It has survived not only five centuries.Lorem adipiscg incididuntlabore dolor ipsum dolor sit amet, consectetur. Bookan unknown printer took a galley of type and scrambled make It has survived.</p>
-                                                <div class="web-hosting-btn">
-                                                    <a href="plan.html" class="btn--base gradient"><i class="las la-plus"></i> Get Started</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5 col-lg-6 mb-30">
-                                            <div class="web-hosting-thumb">
-                                                <img src="assets/images/element/element-34.png" alt="element">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="joomla" role="tabpanel" aria-labelledby="joomla-tab">
-                                <div class="web-hosting-item">
-                                    <div class="row justify-content-center mb-30-none">
-                                        <div class="col-xl-7 col-lg-6 mb-30">
-                                            <div class="web-hosting-content">
-                                                <h3 class="title">Managed Joomla Hosting</h3>
-                                                <p>WordPress is the world’s most popular blog/CMS solution. Monthly high volume visitor adoptable traffic handler web hosting package available for hosting service.</p>
-                                                <p>Bookan unknown printer took a galley of type and scrambled make It has survived not only five centuries.Lorem adipiscg incididuntlabore dolor ipsum dolor sit amet, consectetur. Bookan unknown printer took a galley of type and scrambled make It has survived.</p>
-                                                <div class="web-hosting-btn">
-                                                    <a href="plan.html" class="btn--base gradient"><i class="las la-plus"></i> Get Started</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5 col-lg-6 mb-30">
-                                            <div class="web-hosting-thumb">
-                                                <img src="assets/images/element/element-34.png" alt="element">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade active show" id="wordPress" role="tabpanel" aria-labelledby="wordPress-tab">
-                                <div class="web-hosting-item">
-                                    <div class="row justify-content-center mb-30-none">
-                                        <div class="col-xl-7 col-lg-6 mb-30">
-                                            <div class="web-hosting-content">
-                                                <h3 class="title">Managed WordPress Hosting</h3>
-                                                <p>WordPress is the world’s most popular blog/CMS solution. Monthly high volume visitor adoptable traffic handler web hosting package available for hosting service.</p>
-                                                <p>Bookan unknown printer took a galley of type and scrambled make It has survived not only five centuries.Lorem adipiscg incididuntlabore dolor ipsum dolor sit amet, consectetur. Bookan unknown printer took a galley of type and scrambled make It has survived.</p>
-                                                <div class="web-hosting-btn">
-                                                    <a href="plan.html" class="btn--base gradient"><i class="las la-plus"></i> Get Started</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5 col-lg-6 mb-30">
-                                            <div class="web-hosting-thumb">
-                                                <img src="assets/images/element/element-34.png" alt="element">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="magento" role="tabpanel" aria-labelledby="magento-tab">
-                                <div class="web-hosting-item">
-                                    <div class="row justify-content-center mb-30-none">
-                                        <div class="col-xl-7 col-lg-6 mb-30">
-                                            <div class="web-hosting-content">
-                                                <h3 class="title">Managed Magento Hosting</h3>
-                                                <p>WordPress is the world’s most popular blog/CMS solution. Monthly high volume visitor adoptable traffic handler web hosting package available for hosting service.</p>
-                                                <p>Bookan unknown printer took a galley of type and scrambled make It has survived not only five centuries.Lorem adipiscg incididuntlabore dolor ipsum dolor sit amet, consectetur. Bookan unknown printer took a galley of type and scrambled make It has survived.</p>
-                                                <div class="web-hosting-btn">
-                                                    <a href="plan.html" class="btn--base gradient"><i class="las la-plus"></i> Get Started</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5 col-lg-6 mb-30">
-                                            <div class="web-hosting-thumb">
-                                                <img src="assets/images/element/element-34.png" alt="element">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="openCart" role="tabpanel" aria-labelledby="openCart-tab">
-                                <div class="web-hosting-item">
-                                    <div class="row justify-content-center mb-30-none">
-                                        <div class="col-xl-7 col-lg-6 mb-30">
-                                            <div class="web-hosting-content">
-                                                <h3 class="title">Managed OpenCart Hosting</h3>
-                                                <p>WordPress is the world’s most popular blog/CMS solution. Monthly high volume visitor adoptable traffic handler web hosting package available for hosting service.</p>
-                                                <p>Bookan unknown printer took a galley of type and scrambled make It has survived not only five centuries.Lorem adipiscg incididuntlabore dolor ipsum dolor sit amet, consectetur. Bookan unknown printer took a galley of type and scrambled make It has survived.</p>
-                                                <div class="web-hosting-btn">
-                                                    <a href="plan.html" class="btn--base gradient"><i class="las la-plus"></i> Get Started</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-5 col-lg-6 mb-30">
-                                            <div class="web-hosting-thumb">
-                                                <img src="assets/images/element/element-34.png" alt="element">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="tab-content">
 
 
+                <?php if (!empty($yotta_tab_items_tabs)) :
+					foreach ($yotta_tab_items_tabs as $key=>$tab) :
+						$elementor = \Elementor\Plugin::instance(); ?>
 
+                    <?php $first_content_class = ($key  === 0) ? 'active show tab-pane fade': 'tab-pane fade show'; ?>
+                    <div class="<?php echo esc_attr( $first_content_class ); ?>" id="el-<?php echo esc_attr($tab['_id']); ?>" role="tabpanel">
+                        <div class="web-hosting-item">
+							<!-- Post View -->
+							<?php
+                                                        
+                            echo  $elementor->frontend->get_builder_content_for_display($tab['yotta_tabs_posts_select']); ?>
                         </div>
                     </div>
+
+                    <?php endforeach;
+				endif; ?>
                 </div>
+            </div>
+        </div>
+
+
         <?php
     }
 }
