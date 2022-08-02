@@ -36,7 +36,7 @@ class Yotta_Choose_Single_Item_Widget extends Widget_Base
      */
     public function get_title()
     {
-        return esc_html__('Choose Single Item', 'yotta-core');
+        return esc_html__('Yotta : Choose Single Item', 'yotta-core');
     }
 
     /**

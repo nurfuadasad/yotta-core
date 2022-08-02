@@ -40,7 +40,7 @@
         });
         // Testimonial Slider two
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-two-widget.default', function($scope) {
-            activeTestimonialSliderOne($scope);
+            activeTestimonialSliderTwo($scope);
         });
         // Testimonial Slider three
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-testimonial-three-widget.default', function($scope) {
@@ -85,10 +85,6 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/yotta-countdown-widget.default', function($scope) {
             countdownInit($scope.find('.mycountdown'));
         });
-
-        // elementorFrontend.hooks.addAction('frontend/element_ready/yotta-tabs-one-widget.default', function($scope) {
-        //     yottaTabs($scope);
-        // });
 
     });
 
@@ -392,6 +388,60 @@
         wowSlickInit($selector, sliderSettings);
     }
 
+
+
+    /*----------------------------
+    * Testimonial Slider - Two
+    * --------------------------*/
+    function activeTestimonialSliderTwo($scope) {
+
+        var el = $scope.find('.yottaTestimonialTwo');
+        var elSettings = el.data('settings');
+        console.log(el);
+
+    
+        if ((el.children('div').length < 1) || (elSettings.items === '0' || elSettings.items === '' || typeof elSettings.items == 'undefined')) {
+            return;
+        }
+        var swiper = new Swiper('.yottaTestimonialTwo', {
+            slidesPerView: elSettings.items,
+            spaceBetween: parseInt(elSettings.itemgap),
+            loop: elSettings.loop == 'yes',
+            centeredSlides: elSettings.center === 'yes',
+            autoplay: elSettings.autoplay === 'yes' && {
+                delay: elSettings.autoplaytimeout,
+            },
+            pauseOnMouseEnter: true,
+            direction: elSettings.direction,
+            navigation: {
+                prevEl:  'prev-icon',
+                nextEl:  'next-icon', 
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+                clickable: true,
+            },
+            breakpoints: {
+                991: {
+                    slidesPerView: 3,
+                },
+                767: {
+                    slidesPerView: 2,
+                },
+                575: {
+                    slidesPerView: 1,
+                },
+                420: {
+                    slidesPerView: 1,
+                },
+            }
+        });
+    }
+
+
+
+
     /*----------------------------
     * Testimonial Slider - One
     * --------------------------*/
@@ -438,6 +488,9 @@
             }
         });
     }
+
+
+
 
     /*----------------------------
      * Blog Post Grid Slider

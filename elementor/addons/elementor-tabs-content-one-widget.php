@@ -83,6 +83,7 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
     {
         return ['yotta_widgets'];
     }
+
 	/**
 	 * Register Elementor widget controls.
 	 *
@@ -102,22 +103,12 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 			]
 		);
 
-		$this->add_control(
-			'yotta_tab_title',
-			[
-				'label' => esc_html__('Tab Title', 'yotta-core'),
-				'type' => Controls_Manager::TEXT,
-				'default' => esc_html__("Whats New", 'yotta-core'),
-				'placeholder' => esc_html__('Type your title here', 'yotta-core'),
-			]
-		);
-
 		$repeater = new Repeater();
 
 		$repeater->add_control(
 			'yotta_tab_items_title',
 			[
-				'label' => esc_html__('Title & Description', 'yotta-core'),
+				'label' => esc_html__('Title', 'yotta-core'),
 				'type' => Controls_Manager::TEXT,
 				'default' => esc_html__('Tab Title', 'yotta-core'),
 				'placeholder' => esc_html__('Tab Title', 'yotta-core'),
@@ -179,12 +170,31 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 			]
 		);
 
+
+        $this->start_controls_tabs(
+            'icon_style_tabs'
+        );
+        // Normal Tab
+        $this->start_controls_tab(
+            'icon_normal_tab',
+            [
+                'label' => esc_html__( 'Normal', 'yotta-core' ),
+            ]
+        );
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
 				'name' => 'yotta_tab_border',
-				'label' => esc_html__('Border', 'yotta-core'),
-				'selector' => '{{WRAPPER}} .Newsim-Tab-Wrapper .new-wrapper .nav',
+				'label' => esc_html__('Nav Border', 'yotta-core'),
+				'selector' => '{{WRAPPER}} .web-hosting-tab .nav',
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'yotta_tab_item_border',
+				'label' => esc_html__('Item Border', 'yotta-core'),
+				'selector' => '{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link',
 			]
 		);
 
@@ -194,42 +204,15 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 				'name' => 'yotta_tab_background',
 				'label' => esc_html__('Background', 'yotta-core'),
 				'types' => ['classic', 'gradient', 'video'],
-				'selector' => '{{WRAPPER}} .Newsim-Tab-Wrapper .new-wrapper .nav',
+				'selector' => '{{WRAPPER}} .web-hosting-tab nav',
 			]
 		);
 
-		$this->add_control(
-			'yotta_tab_items_heading_heding',
-			[
-				'label' => esc_html__('Heading', 'yotta-core'),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
-			'yotta_tab_heading_color',
-			[
-				'label' => esc_html__('Color', 'yotta-core'),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .Newsim-Tab-Wrapper .theme-heading-title .title' => 'color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'yotta_tab_heading_typography',
-				'selector' => '{{WRAPPER}} .Newsim-Tab-Wrapper .theme-heading-title .title',
-			]
-		);
-
+	
 		$this->add_control(
 			'yotta_tab_items_heading_title',
 			[
-				'label' => esc_html__('Items Title', 'yotta-core'),
+				'label' => esc_html__('Nav Text', 'yotta-core'),
 				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
@@ -241,7 +224,7 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 				'label' => esc_html__('Color', 'yotta-core'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .Newsim-Tab-Wrapper .nav-item a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -252,8 +235,19 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 				'label' => esc_html__('Active Color', 'yotta-core'),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .Newsim-Tab-Wrapper .nav-item.active a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link.active' => 'color: {{VALUE}}',
 				],
+			]
+		);
+		$this->add_control(
+			'yotta_tab_items_active_bg',
+			[
+				'label' => esc_html__('Active Background', 'yotta-core'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link' => 'background: {{VALUE}}',
+				],
+				'default'	=> 'transparent'
 			]
 		);
 
@@ -261,7 +255,7 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'yotta_tab_items_typography',
-				'selector' => '{{WRAPPER}} .Newsim-Tab-Wrapper .nav-item a',
+				'selector' => '{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link span',
 			]
 		);
 
@@ -269,7 +263,7 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 			Group_Control_Text_Stroke::get_type(),
 			[
 				'name' => 'yotta_tab_items_text_stroke',
-				'selector' => '{{WRAPPER}} .Newsim-Tab-Wrapper .nav-item a',
+				'selector' => '{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link span',
 			]
 		);
 
@@ -277,12 +271,68 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'yotta_tab_items_title_shadow',
-				'selector' => '{{WRAPPER}} .Newsim-Tab-Wrapper .nav-item a',
+				'selector' => '{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link',
+			]
+		);
+		$this->add_control(
+			'yotta_tab_items_icon',
+			[
+				'label' => esc_html__('Icon', 'yotta-core'),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		
+		$this->add_control(
+			'tab_icon_size',
+			[
+				'label' => esc_html__( 'Icon Size', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 5,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 30,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .web-hosting-tab-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
+    	$this->end_controls_tab();
 
-		$this->end_controls_section();
+		// Hover Tab
+		$this->start_controls_tab(
+			'icon_hover_tab',
+			[
+				'label' => esc_html__( 'Hover', 'yotta-core' ),
+			]
+		);
+		$this->add_control(
+			'yotta_tab_items_hover_color',
+			[
+				'label' => esc_html__('Hover Color', 'yotta-core'),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .web-hosting-tab .nav-tabs .nav-link:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		$this->end_controls_tab();
+      	$this->end_controls_tabs(); // End of Tabs section
+
+		$this->end_controls_section();// End of section
 	}
 
     /**
@@ -299,7 +349,7 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
         ?>
         <div class="web-hosting-tab-area">
             <div class="web-hosting-tab">
-                <nav class="yotta-tabs-nav">
+                <nav>
                     <div class="nav nav-tabs" role="tablist">
 
 					<!-- Tabs -->
@@ -309,14 +359,12 @@ class Yotta_Tabs_Content_One_Widget extends Widget_Base
                         $first_loop_class = $key === 0 ? 'nav-link text-center active show' : 'nav-link text-center';
                         ?>
                         <a class="<?php echo esc_attr( $first_loop_class ); ?>" id="#el-<?php echo esc_attr( $tab['_id'] ); ?>" data-toggle="tab" href="#el-<?php echo esc_attr( $tab['_id'] ); ?>" role="tab" aria-selected="true">
-                            <?php if(!empty($yotta_tab_icon)): ?>
+                             
+						<?php if(!empty($tab['yotta_tab_icon'])): ?>
 							<div class="web-hosting-tab-icon">
 							<?php
                             	Icons_Manager::render_icon($tab['yotta_tab_icon'], ['aria-hidden' => 'true']);
-								echo "dfkldfjkdfj";
 							?>
-                                <!-- <i class="lab la-drupal"></i> -->
-								
                             </div>
 							<?php endif; ?>
                             <span><?php echo esc_html($tab['yotta_tab_items_title']); ?></span>
